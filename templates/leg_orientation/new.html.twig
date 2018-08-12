@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New LegOrientation{% endblock %}
+
+{% block body %}
+    <h1>Create new LegOrientation</h1>
+
+    {{ include('leg_orientation/_form.html.twig') }}
+
+    <a href="{{ path('leg_orientation_index') }}">back to list</a>
+{% endblock %}

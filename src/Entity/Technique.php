@@ -42,10 +42,10 @@ class Technique
     private $player;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Type")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Catagory")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $type;
+    private $catagory;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Video", inversedBy="techniques")
@@ -116,14 +116,14 @@ class Technique
         return $this;
     }
 
-    public function getType(): ?Type
+    public function getCatagory(): ?Catagory
     {
-        return $this->type;
+        return $this->catagory;
     }
 
-    public function setType(?Type $type): self
+    public function setCatagory(?Catagory $catagory): self
     {
-        $this->type = $type;
+        $this->catagory= $catagory;
 
         return $this;
     }

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ArmOrientation{% endblock %}
+
+{% block body %}
+    <h1>Create new ArmOrientation</h1>
+
+    {{ include('arm_orientation/_form.html.twig') }}
+
+    <a href="{{ path('arm_orientation_index') }}">back to list</a>
+{% endblock %}
