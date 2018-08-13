@@ -6,6 +6,33 @@
     <h1>Create new Position</h1>
 
     {{ include('position/_form.html.twig') }}
+    
+    
+    
+    
+       
+    <table>
+    	<tr>
+        	<td>
+    			<a href="{{ path('sub_system_new') }}">Create a new SubSystem</a>
+    		</td>    
+      	</tr>
+  		<tr>
+		    <td>
+				<a href="{{ path('arm_orientation_new') }}">Create a new Leg Orientation</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="{{ path('leg_orientation_new') }}">Create a new Arm Orientation</a>
+			</td>
+		</tr>  
+		<tr>
+			<td>
+				<a href="{{ path('position_index') }}">back to list</a>
+			</td>
+		</tr>  
+</table>
 
-    <a href="{{ path('position_index') }}">back to list</a>
+    
 {% endblock %}

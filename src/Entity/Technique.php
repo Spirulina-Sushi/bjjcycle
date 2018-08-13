@@ -115,7 +115,7 @@ class Technique
 
         return $this;
     }
-
+    
     public function getCatagory(): ?Catagory
     {
         return $this->catagory;
@@ -165,4 +165,5 @@ class Technique
 
         return $this;
     }
+   
 }

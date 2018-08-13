@@ -23,6 +23,7 @@ class SubSystem
      */
     private $name;
 
+    
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Position", mappedBy="subsystem")
      */
@@ -48,6 +49,12 @@ class SubSystem
         $this->name = $name;
 
         return $this;
+    }
+    
+    
+    public function __toString()
+    {
+        return (string) $this->name;
     }
 
     /**
