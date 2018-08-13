@@ -12,6 +12,7 @@ class PositionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name')
             ->add('subsystem')
             ->add('armOrientation')
             ->add('legOrientation')
