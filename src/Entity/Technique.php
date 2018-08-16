@@ -58,6 +58,12 @@ class Technique
      */
     private $game;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Cycle", inversedBy="techniques")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $cycle;
+
     public function __construct()
     {
         $this->video = new ArrayCollection();
@@ -162,6 +168,18 @@ class Technique
     public function setGame(?Game $game): self
     {
         $this->game = $game;
+
+        return $this;
+    }
+
+    public function getCycle(): ?Cycle
+    {
+        return $this->cycle;
+    }
+
+    public function setCycle(?Cycle $cycle): self
+    {
+        $this->cycle = $cycle;
 
         return $this;
     }
