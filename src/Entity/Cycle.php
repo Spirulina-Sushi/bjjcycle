@@ -50,6 +50,11 @@ class Cycle
         return $this;
     }
 
+    public function __toString()
+    {
+        return (string) $this->name;
+    }
+    
     /**
      * @return Collection|Technique[]
      */

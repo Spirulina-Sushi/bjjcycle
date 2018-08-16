@@ -16,6 +16,8 @@ class PositionType extends AbstractType
             ->add('subsystem')
             ->add('armOrientation')
             ->add('legOrientation')
+            ->add('techniquesStart')
+            ->add('techniquesEnd')
         ;
     }
 

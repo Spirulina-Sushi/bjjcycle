@@ -2,31 +2,24 @@
 
 namespace App\Form;
 
-use App\Entity\Technique;
+use App\Entity\Cycle;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Technique1Type extends AbstractType
+class CycleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
-            ->add('startPosition')
-            ->add('endPosition')
-            ->add('player')
-            ->add('catagory')
-            ->add('video')
-            ->add('game')
-            ->add('cycle')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Technique::class,
+            'data_class' => Cycle::class,
         ]);
     }
 }

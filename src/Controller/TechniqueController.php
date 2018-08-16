@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Technique;
-use App\Form\Technique1Type;
+use App\Form\TechniqueType;
 use App\Repository\TechniqueRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +29,7 @@ class TechniqueController extends Controller
     public function new(Request $request): Response
     {
         $technique = new Technique();
-        $form = $this->createForm(Technique1Type::class, $technique);
+        $form = $this->createForm(TechniqueType::class, $technique);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -59,7 +59,7 @@ class TechniqueController extends Controller
      */
     public function edit(Request $request, Technique $technique): Response
     {
-        $form = $this->createForm(Technique1Type::class, $technique);
+        $form = $this->createForm(TechniqueType::class, $technique);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

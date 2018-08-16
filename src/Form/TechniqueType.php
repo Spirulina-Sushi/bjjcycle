@@ -13,13 +13,13 @@ class TechniqueType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('startPosition')
-            ->add('endPosition')
             ->add('player')
             ->add('catagory')
             ->add('video')
             ->add('game')
             ->add('cycle')
+            ->add('startPosition')
+            ->add('endPosition')
         ;
     }
 
