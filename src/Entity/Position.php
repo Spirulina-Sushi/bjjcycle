@@ -36,25 +36,30 @@ class Position
      */
     private $legOrientation;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Technique", mappedBy="startPosition")
-     */
-    private $techniques;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Technique", mappedBy="endPosition")
-     */
-    private $techniquesEnd;
+    
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Technique", mappedBy="startPosition")
+     * @ORM\JoinTable(name="start_technique_position")
+     */
+    private $techniquesStart;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Technique", mappedBy="endPosition")
+     * @ORM\JoinTable(name="end_technique_position")
+     */
+    private $techniquesEnd;
+
     public function __construct()
     {
         $this->techniques = new ArrayCollection();
         $this->techniquesEnd = new ArrayCollection();
+        $this->techniquesStart = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,6 +173,34 @@ class Position
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Technique[]
+     */
+    public function getTechniquesStart(): Collection
+    {
+        return $this->techniquesStart;
+    }
+
+    public function addTechniquesStart(Technique $techniquesStart): self
+    {
+        if (!$this->techniquesStart->contains($techniquesStart)) {
+            $this->techniquesStart[] = $techniquesStart;
+            $techniquesStart->addStartPosition($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTechniquesStart(Technique $techniquesStart): self
+    {
+        if ($this->techniquesStart->contains($techniquesStart)) {
+            $this->techniquesStart->removeElement($techniquesStart);
+            $techniquesStart->removeStartPosition($this);
+        }
 
         return $this;
     }

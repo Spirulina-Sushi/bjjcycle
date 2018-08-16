@@ -23,17 +23,7 @@ class Technique
      */
     private $name;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Position", inversedBy="techniques")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $startPosition;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Position", inversedBy="techniquesEnd")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $endPosition;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Player")
@@ -64,9 +54,23 @@ class Technique
      */
     private $cycle;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Position", inversedBy="techniquesStart")
+     * @ORM\JoinTable(name="start_technique_position")
+     */
+    private $startPosition;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Position", inversedBy="techniquesEnd")
+     * @ORM\JoinTable(name="end_technique_position")
+     */
+    private $endPosition;
+
     public function __construct()
     {
         $this->video = new ArrayCollection();
+        $this->startPosition = new ArrayCollection();
+        $this->endPosition = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -86,29 +90,7 @@ class Technique
         return $this;
     }
 
-    public function getStartPosition(): ?Position
-    {
-        return $this->startPosition;
-    }
-
-    public function setStartPosition(?Position $startPosition): self
-    {
-        $this->startPosition = $startPosition;
-
-        return $this;
-    }
-
-    public function getEndPosition(): ?Position
-    {
-        return $this->endPosition;
-    }
-
-    public function setEndPosition(?Position $endPosition): self
-    {
-        $this->endPosition = $endPosition;
-
-        return $this;
-    }
+   
 
     public function getPlayer(): ?Player
     {
@@ -180,6 +162,58 @@ class Technique
     public function setCycle(?Cycle $cycle): self
     {
         $this->cycle = $cycle;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Position[]
+     */
+    public function getStartPosition(): Collection
+    {
+        return $this->startPosition;
+    }
+
+    public function addStartPosition(Position $startPosition): self
+    {
+        if (!$this->startPosition->contains($startPosition)) {
+            $this->startPosition[] = $startPosition;
+        }
+
+        return $this;
+    }
+
+    public function removeStartPosition(Position $startPosition): self
+    {
+        if ($this->startPosition->contains($startPosition)) {
+            $this->startPosition->removeElement($startPosition);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Position[]
+     */
+    public function getEndPosition(): Collection
+    {
+        return $this->endPosition;
+    }
+
+    public function addEndPosition(Position $endPosition): self
+    {
+        if (!$this->endPosition->contains($endPosition)) {
+            $this->endPosition[] = $endPosition;
+        }
+
+        return $this;
+    }
+
+    public function removeEndPosition(Position $endPosition): self
+    {
+        if ($this->endPosition->contains($endPosition)) {
+            $this->endPosition->removeElement($endPosition);
+        }
 
         return $this;
     }

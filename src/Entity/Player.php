@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Collection;
+use PhpParser\Node\Name;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PlayerRepository")
@@ -17,29 +19,29 @@ class Player
     private $id;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string")
      */
-    private $Top;
+    private $name;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTop(): ?bool
+    public function getName(): ?string
     {
-        return $this->Top;
+        return $this->name;
     }
-
-    public function setTop(bool $Top): self
+    
+    public function setName(string $name): self
     {
-        $this->Top = $Top;
-
+        $this->name = $name;
+        
         return $this;
     }
     
     public function __toString()
     {
-        return (string) $this->Top;
+        return (string) $this->name;
     }
 }

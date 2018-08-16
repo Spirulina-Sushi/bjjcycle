@@ -17,7 +17,7 @@
         {% for player in players %}
             <tr>
                 <td>{{ player.id }}</td>
-                <td>{{ player.Top ? 'Yes' : 'No' }}</td>
+                <td>{{ player.name }}</td>
                 <td>
                     <a href="{{ path('player_show', {'id': player.id}) }}">show</a>
                     <a href="{{ path('player_edit', {'id': player.id}) }}">edit</a>
