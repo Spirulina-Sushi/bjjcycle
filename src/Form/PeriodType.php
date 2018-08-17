@@ -2,25 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Cycle;
+use App\Entity\Period;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CycleType extends AbstractType
+class PeriodType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
-            ->add('period')
+            ->add('days')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Cycle::class,
+            'data_class' => Period::class,
         ]);
     }
 }

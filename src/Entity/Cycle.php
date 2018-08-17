@@ -28,6 +28,12 @@ class Cycle
      */
     private $techniques;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Period")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $period;
+
     public function __construct()
     {
         $this->techniques = new ArrayCollection();
@@ -82,6 +88,18 @@ class Cycle
                 $technique->setCycle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPeriod(): ?Period
+    {
+        return $this->period;
+    }
+
+    public function setPeriod(?Period $period): self
+    {
+        $this->period = $period;
 
         return $this;
     }
