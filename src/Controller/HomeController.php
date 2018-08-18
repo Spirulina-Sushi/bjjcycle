@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Cycle;
+use App\Repository\CycleRepository;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends AbstractController
 {
@@ -30,10 +33,11 @@ class HomeController extends AbstractController
     /**
      * @Route("/focus", name="focus")
      */
-    public function focus()
+    public function focus(CycleRepository $cycleRepository): Response
     {
         return $this->render('home/focus.html.twig', [
             'controller_name' => 'HomeController',
+            'cycles' => $cycleRepository->findAll()
         ]);
     }
     

@@ -6,23 +6,56 @@
 	<main role="main" class="inner cover">
         <h1 class="cover-heading">Focus Cycle</h1>
         <p class="lead">The 'slow' cycle alows you to deepen your A-Game.</p>
-        <p>
-          	Train hard in each aspect of Jits without becoming a Jack-of-All-Guards.
-		</p>
 		
         <div class="container">
+              
               <div class="row">
                     <div class="col-sm-9">
                       	One of three columns
                     </div>
-                    <div class="col-sm-2">
-                      	One of three columns
+                    <div class="col-sm-3">
+                    {% for cycle in cycles if cycle.name == 'Focus' %}
+                      	<div class="card" >
+                   			<img 	class="card-img-top" 
+                   					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsudWjJd8Zks3fZmEIUhOW6oBL-8iG0ocf8AXXZbjMVCZScfU4QQ" 
+                   					alt="Card image cap">
+                          	<div class="card-body">
+                            	<h5 class="card-title">Focus Cycle</h5>
+                          	</div>
+                          	
+                          	
+                          	<ul class="list-group list-group-flush">
+                            
+                            	<li class="list-group-item">
+                            		Each Period Lasts
+                            		<br>
+                            		<span class="badge badge-secondary">{{ cycle.period }}</span>
+                            	</li>
+                            	
+                            	<li class="list-group-item">
+                            		Total Techniques
+                            		<br>
+                            		<span class="badge badge-secondary">10,000!</span>                      	
+                            	</li>
+                            	
+                            	<li class="list-group-item">
+                            		The Focus Cycle Lasts
+                            		<br>
+                            		<span class="badge badge-secondary">3 Years</span>
+                            	</li>
+                          	
+                          	</ul>
+                          	
+                          	<div class="card-body">
+                            	<a href="/cycle" class="card-link">Edit Cycle</a>
+                            	<a href="/technique/new" class="card-link">Add Techniques</a>
+                          	</div>
+                          	
+                        </div>
+                    {% endfor  %}    
                     </div>
-                    <div class="col-sm-1">
-                     	The Focus Cycle lasts: xxxxx<br>
-                     	There 
-                    </div>
-              </div>
+                    
+              	</div>
         </div>
 	
 	</main>
