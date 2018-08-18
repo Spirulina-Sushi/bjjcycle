@@ -1,14 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}Maintenance Cycle!{% endblock %}
 
 {% block body %}
-	<main role="main" class="inner cover">
-        <h1 class="cover-heading">Maintenance Cycle</h1>
-        <p class="lead">The 'quick' cycle stops your B-Game getting rusty.</p>
-        <p >
-          	Generates training routines that act as refreshers working through your knowlegebase without overspecialising.
-        </p>
-    </main>
+     <div class="container">
+              
+     	<div class="row">
+        	<div class="col-sm-9">
+				<main role="main" class="inner cover">
+                    <h1 class="cover-heading">Maintenance Cycle</h1>
+                    <p class="lead">The 'slow' cycle alows you to deepen your A-Game.</p>
+ 
+  					
+  					<ul class="list-group">
+  
+					
+ 						{% for technique in techniques if technique.startPosition == "Butterfly Guard Over/Under"%}           		
+ 
+                          <li class="list-group-item">{{ technique.name }}</li>
+ 
+ 					    {% endfor %}
+                    </ul>  	
+                      	
+                      	
+                    </div>
+                    <div class="col-sm-3">
+                    {% for cycle in cycles if cycle.name == 'Maintenance' %}
+                      	<div class="card" >
+                   			<img 	class="card-img-top"
+                   					src="{{ absolute_url(asset('images/Wrench.png')) }}"  
+                   					alt="Card image cap">
+                          	
+                          	<ul class="list-group list-group-flush">
+                            	<li  class="list-group-item">
+                                	<h4 class="card-title">Maintenance Subsystem
+                                		<a href="/technique/new" class="badge badge-secondary">Butterfly Guard</a>
+                                	</h4>
+                                	<h5 class="card-title">Maintenance Position
+                                		<a href="/technique/new" class="badge badge-secondary">Butterfly Guard Over/Under</a>
+                                	</h5>                            	
+                            	</li>
+                            	
+                            	<li class="list-group-item">
+                            		Each Period Lasts
+                            		<a href="/cycle" class="badge badge-secondary">{{ cycle.period }}</a><br>
+                            		Total Techniques
+                            		<a href="/technique/new" class="badge badge-secondary">{{ techniques|length }} !!!</a><br>
+                            		The Maintenance Cycle Lasts
+                            		<a href="/cycle/2" class="badge badge-secondary">2 Years</a><br>
+                            	</li>
+                          	
+                          	</ul>
+                          	
+                        </div>
+                    {% endfor  %}    
+                    </div>
+    			</main>                
+          	</div>
+        </div>
+	
+	
+
 
 {% endblock %}

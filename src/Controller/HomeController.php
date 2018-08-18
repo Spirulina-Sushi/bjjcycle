@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Cycle;
 use App\Repository\CycleRepository;
 use Symfony\Component\HttpFoundation\Response;
+use App\Repository\TechniqueRepository;
 
 class HomeController extends AbstractController
 {
@@ -23,21 +24,24 @@ class HomeController extends AbstractController
     /**
      * @Route("/maintenance", name="maintenance")
      */
-    public function maintenance()
+    public function maintenance(CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory): Response
     {
         return $this->render('home/maintenance.html.twig', [
             'controller_name' => 'HomeController',
+            'cycles' => $cycleRepository->findAll(),
+            'techniques' => $techniqueReopsitory->findAll()
         ]);
     }
     
     /**
      * @Route("/focus", name="focus")
      */
-    public function focus(CycleRepository $cycleRepository): Response
+    public function focus(CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory): Response
     {
         return $this->render('home/focus.html.twig', [
             'controller_name' => 'HomeController',
-            'cycles' => $cycleRepository->findAll()
+            'cycles' => $cycleRepository->findAll(),
+            'techniques' => $techniqueReopsitory->findAll()
         ]);
     }
     

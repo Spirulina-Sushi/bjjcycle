@@ -1,64 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}Focus Cycle!{% endblock %}
 
 {% block body %}
-	<main role="main" class="inner cover">
-        <h1 class="cover-heading">Focus Cycle</h1>
-        <p class="lead">The 'slow' cycle alows you to deepen your A-Game.</p>
-		
-        <div class="container">
+     <div class="container">
               
-              <div class="row">
-                    <div class="col-sm-9">
-                      	One of three columns
+     	<div class="row">
+        	<div class="col-sm-9">
+				<main role="main" class="inner cover">
+                    <h1 class="cover-heading">Focus Cycle</h1>
+                    <p class="lead">The 'slow' cycle alows you to deepen your A-Game.</p>
+            		
+ 
+                      	
+                      	
+                      	
                     </div>
                     <div class="col-sm-3">
                     {% for cycle in cycles if cycle.name == 'Focus' %}
                       	<div class="card" >
-                   			<img 	class="card-img-top" 
-                   					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsudWjJd8Zks3fZmEIUhOW6oBL-8iG0ocf8AXXZbjMVCZScfU4QQ" 
+                   			<img 	class="card-img-top"
+                   					src="{{ absolute_url(asset('images/Magnifying-Glass.png')) }}"  
                    					alt="Card image cap">
-                          	<div class="card-body">
-                            	<h5 class="card-title">Focus Cycle</h5>
-                          	</div>
-                          	
                           	
                           	<ul class="list-group list-group-flush">
-                            
+                            	<li  class="list-group-item">
+                                	<h4 class="card-title">Focus Subsystem
+                                		<a href="/technique/new" class="badge badge-secondary">Butterfly Guard</a>
+                                	</h4>
+                                	<h5 class="card-title">Focus Position
+                                		<a href="/technique/new" class="badge badge-secondary">Butterfly Guard Over/Under</a>
+                                	</h5>                            	
+                            	</li>
+                            	
                             	<li class="list-group-item">
                             		Each Period Lasts
-                            		<br>
-                            		<span class="badge badge-secondary">{{ cycle.period }}</span>
-                            	</li>
-                            	
-                            	<li class="list-group-item">
+                            		<a href="/cycle" class="badge badge-secondary">{{ cycle.period }}</a><br>
                             		Total Techniques
-                            		<br>
-                            		<span class="badge badge-secondary">10,000!</span>                      	
-                            	</li>
-                            	
-                            	<li class="list-group-item">
+                            		<a href="/technique/new" class="badge badge-secondary">{{ techniques|length }} !!!</a><br>
                             		The Focus Cycle Lasts
-                            		<br>
-                            		<span class="badge badge-secondary">3 Years</span>
+                            		<a href="/cycle/2" class="badge badge-secondary">2 Years</a><br>
                             	</li>
                           	
                           	</ul>
                           	
-                          	<div class="card-body">
-                            	<a href="/cycle" class="card-link">Edit Cycle</a>
-                            	<a href="/technique/new" class="card-link">Add Techniques</a>
-                          	</div>
-                          	
                         </div>
                     {% endfor  %}    
                     </div>
-                    
-              	</div>
+    			</main>                
+          	</div>
         </div>
 	
-	</main>
+	
 
 
 {% endblock %}
