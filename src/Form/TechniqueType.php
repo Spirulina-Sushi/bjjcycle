@@ -22,6 +22,7 @@ class TechniqueType extends AbstractType
             ->add('endPosition')
         ;
     }
+    
 
     public function configureOptions(OptionsResolver $resolver)
     {
