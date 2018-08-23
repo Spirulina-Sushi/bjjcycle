@@ -5,7 +5,7 @@ security:
             memory:
                 users:
                     ryan:
-                        password: ryan
+                        password: $2y$12$l/FT6.s0zJse40JqwNMVdOVxOm1knq2t8iiSDcrmB86l87yy2Iusa
                         roles: 'ROLE_USER'
                     admin:
                         password: $2y$12$jxwYwuU4fIViLSoBB42oK.Q8U/hZz43hklsg3s5vp.cvYUfamFkZS
@@ -21,7 +21,9 @@ security:
             security: false
         main:
             anonymous: ~
-            http_basic: ~
+            form_login:
+                login_path: login
+                check_path: login
 
             # activate different ways to authenticate
 
