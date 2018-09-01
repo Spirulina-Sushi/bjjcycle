@@ -21,7 +21,7 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-    
+
     /**
      * @Route("/maintenance", name="maintenance")
      */
@@ -33,7 +33,7 @@ class HomeController extends AbstractController
             'techniques' => $techniqueReopsitory->findAll()
         ]);
     }
-    
+
     /**
      * @Route("/focus", name="focus")
      */
@@ -58,5 +58,5 @@ class HomeController extends AbstractController
             'positions' => $positionRepository->findAll()
         ]);
     }
-    
+
 }
