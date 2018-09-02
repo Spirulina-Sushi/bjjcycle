@@ -1,15 +1,19 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-                users:
-                    ryan:
-                        password: $2y$12$l/FT6.s0zJse40JqwNMVdOVxOm1knq2t8iiSDcrmB86l87yy2Iusa
-                        roles: 'ROLE_USER'
-                    admin:
-                        password: $2y$12$jxwYwuU4fIViLSoBB42oK.Q8U/hZz43hklsg3s5vp.cvYUfamFkZS
-                        roles: 'ROLE_ADMIN'
+        our_db_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+        #in_memory:
+        #    memory:
+        #        users:
+        #            ryan:
+        #                password: $2y$12$l/FT6.s0zJse40JqwNMVdOVxOm1knq2t8iiSDcrmB86l87yy2Iusa
+        #                roles: 'ROLE_USER'
+        #            admin:
+        #                password: $2y$12$jxwYwuU4fIViLSoBB42oK.Q8U/hZz43hklsg3s5vp.cvYUfamFkZS
+        #                roles: 'ROLE_ADMIN'
     encoders:
         Symfony\Component\Security\Core\User\User:
             algorithm: bcrypt
@@ -20,11 +24,13 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: ~
-            form_login:
-                login_path: login
-                check_path: login
-
+            #anonymous: ~
+            #form_login:
+            #    login_path: login
+            #    check_path: login
+            pattern:    ^/
+            http_basic: ~
+            provider: our_db_provider
             # activate different ways to authenticate
 
             # http_basic: true
