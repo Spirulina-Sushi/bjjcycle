@@ -56,7 +56,12 @@
 
                         </div>
                     </li>
-                    <a class="nav-item nav-link disabled" href="{{ path('login') }}">Login</a>
+                    {% if app.user %}
+                        <a class="nav-item nav-link disabled" href="{{ path('login') }}"><Logout></Logout></a>
+                    {% elseif not app.user %}
+                        <a class="nav-item nav-link disabled" href="{{ path('login') }}">Login</a>
+                    {% endif %}
+
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
