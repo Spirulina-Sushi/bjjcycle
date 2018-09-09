@@ -17,8 +17,8 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('email', EmailType::class)
         ->add('username', TextType::class)
+        ->add('email', EmailType::class)
         ->add('Password', RepeatedType::class, array(
             'type' => PasswordType::class,
             'first_options'  => array('label' => 'Password'),
@@ -27,13 +27,21 @@ class UserType extends AbstractType
         ->add('joinDate', DateType::class, array(
             'label' => 'Join Date'))
         ->add('m_sesh_per_week', IntegerType::class, array(
-            'label' => 'Maintenance Sessions Per Week'))
+            'label' => 'Maintenance',
+            'data' =>'1'
+            ))
         ->add('m_sesh_per_variant', IntegerType::class, array(
-            'label' => 'Sessions Per Week'))
+            'label' => 'Maintenance',
+            'data' =>'1'
+        ))
         ->add('f_sesh_per_week', IntegerType::class, array(
-            'label' => 'Focus Sessions Per Week'))
+            'label' => 'Focus',
+            'data' =>'1'
+        ))
         ->add('f_sesh_per_variant', IntegerType::class, array(
-            'label' => 'Sessions Per Week'))
+            'label' => 'Focus',
+            'data' =>'1'
+        ))
         ;
     }
 

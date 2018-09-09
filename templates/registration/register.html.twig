@@ -16,16 +16,19 @@
                     {{ form_row(form.Password.first) }}
                     {{ form_row(form.Password.second) }}
                     {{ form_row(form.joinDate) }}
-                    {{ form_row(form.m_sesh_per_variant) }}
-
             </div>
             <div class="col-sm">
-                One of three columns
+                <p><strong>Sessions Per Week</strong></p>
+                    {{ form_row(form.f_sesh_per_week) }}
+                    {{ form_row(form.m_sesh_per_week) }}
+                <p><strong>Variants Per Week</strong></p>
+                    {{ form_row(form.f_sesh_per_variant) }}
+                    {{ form_row(form.m_sesh_per_variant) }}
             </div>
         </div>
     </div>
 
-    <button type="submit">Register!</button>
+    <button type="submit" class="btn btn-primary">Register!</button>
 {{ form_end(form) }}
 
 
