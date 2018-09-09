@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
+
 /**
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -34,7 +36,7 @@ class User implements UserInterface, \Serializable
     private $email;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $join_date;
 
@@ -73,6 +75,14 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    public function __construct()
+    {
+        $this->join_date = new \DateTime();
+        $this->isActive = true;
+        // may not be needed, see section on salt below
+        // $this->salt = md5(uniqid('', true));
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -80,12 +90,12 @@ class User implements UserInterface, \Serializable
 
     public function getUsername(): ?string
     {
-        return $this->name;
+        return $this->username;
     }
 
-    public function setUsername(string $name): self
+    public function setUsername(string $username): self
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
@@ -108,10 +118,11 @@ class User implements UserInterface, \Serializable
 
     public function setEmail(string $email): self
     {
-        $this->password = $email;
+        $this->email = $email;
 
         return $this;
     }
+
 
     public function getJoinDate(): ?\DateTimeInterface
     {
@@ -197,12 +208,7 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid('', true));
-    }
+
 
     public function getSalt()
     {
@@ -210,9 +216,9 @@ class User implements UserInterface, \Serializable
         // see section on salt below
         return null;
     }public function getRoles()
-{
-    return array('ROLE_USER');
-}
+        {
+            return array('ROLE_USER');
+        }
 
     public function eraseCredentials()
     {

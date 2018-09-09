@@ -5,14 +5,14 @@
 {% block body %}
 
     {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
         <main role="main" class="inner cover">
             <h1 class="cover-heading">BJJ Cycle</h1>
             <p class="lead">Track your training and never forget a technique again!.</p>
             <p >
-                <strong>Login! </strong><br>Forgot your password? Register
+                <strong>Login! </strong><br>Forgot your password? <a href="{{ path('register')}}">Register</a>
             </p>
         </main>
 
