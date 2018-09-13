@@ -57,7 +57,7 @@
                         </div>
                     </li>
                     {% if app.user %}
-                        <a class="nav-item nav-link disabled" href="{{ path('login') }}"><Logout></Logout></a>
+                        <a class="nav-item nav-link disabled" href="{{ path('logout') }}">Logout</a>
                     {% elseif not app.user %}
                         <a class="nav-item nav-link disabled" href="{{ path('login') }}">Login</a>
                     {% endif %}

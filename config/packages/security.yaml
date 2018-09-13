@@ -15,6 +15,9 @@ security:
             security: false
         main:
             anonymous: true
+            logout:
+                path:   /logout
+                target: /
             form_login:
                 login_path: login
                 check_path: login
