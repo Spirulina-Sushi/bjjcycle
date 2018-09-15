@@ -30,7 +30,7 @@ class HomeController extends AbstractController
         return $this->render('home/maintenance.html.twig', [
             'controller_name' => 'HomeController',
             'cycles' => $cycleRepository->findAll(),
-            'techniques' => $techniqueReopsitory->findAll()
+            'techniques' => $techniqueReopsitory->findByPosition('Butterfly Guard Over/Under')
         ]);
     }
 
@@ -47,7 +47,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/flow", name="flow")
+     * @Route("/flow", name="flow") 
      */
     public function flow(CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory, PositionRepository $positionRepository): Response
     {
