@@ -1,7 +1,9 @@
 <?php
 namespace App\Form;
 
+use App\Entity\Position;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+
+
 
 class UserType extends AbstractType
 {
@@ -42,7 +46,18 @@ class UserType extends AbstractType
             'label' => 'Focus',
             'data' =>'1'
         ))
+        ->add('currentPositionGround', EntityType::class, array(
+            'label' => 'Current Starting Position',
+            'class' => Position::class,
+            //'choices' => $name->getName()
+        ))
+        ->add('currentPositionStanding', EntityType::class, array(
+            'label' => 'Current Starting Position',
+            'class' => Position::class,
+            //'choices' => $name->getName()
+        ))
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

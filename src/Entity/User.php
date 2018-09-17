@@ -81,10 +81,15 @@ class User implements UserInterface, \Serializable
      */
     private $currentPositionStanding;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Position", inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $currentPositionGround;
+
     public function __construct()
     {
         $this->join_date = new \DateTime();
-        $this->currentPosition =
         $this->isActive = true;
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
@@ -255,14 +260,25 @@ class User implements UserInterface, \Serializable
             ) = unserialize($serialized, array('allowed_classes' => false));
     }
 
-    public function getCurrentPosition(): ?Position
+    public function getCurrentPositionStanding(): ?Position
     {
-        return $this->currentPosition;
+        return $this->currentPositionStanding;
     }
 
-    public function setCurrentPosition(?Position $currentPosition): self
+    public function setCurrentPositionStanding(?Position $currentPositionStanding): self
     {
-        $this->currentPosition = $currentPosition;
+        $this->currentPositionStanding = $currentPositionStanding;
+
+        return $this;
+    }
+    public function getCurrentPositionGround(): ?Position
+    {
+        return $this->currentPositionGround;
+    }
+
+    public function setCurrentPositionGround(?Position $currentPositionGround): self
+    {
+        $this->currentPositionGround = $currentPositionGround;
 
         return $this;
     }

@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Repository\PositionRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Cycle;
+use Symfony\Component\Security\Core\Security;
 use App\Repository\CycleRepository;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\TechniqueRepository;
@@ -25,12 +26,15 @@ class HomeController extends AbstractController
     /**
      * @Route("/maintenance", name="maintenance")
      */
-    public function maintenance(CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory): Response
+    public function maintenance(Security $security, CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory, UserRepository $userRepository): Response
     {
+//        $userId = $security->getUser();
+
         return $this->render('home/maintenance.html.twig', [
             'controller_name' => 'HomeController',
             'cycles' => $cycleRepository->findAll(),
-            'techniques' => $techniqueReopsitory->findByPosition('Butterfly Guard Over/Under')
+            'techniques' => $techniqueReopsitory->findByPosition('Butterfly Guard Over/Under'),
+//            'user' => $userRepository->find($userId)
         ]);
     }
 
