@@ -30,7 +30,7 @@ class HomeController extends AbstractController
         return $this->render('home/maintenance.html.twig', [
             'controller_name' => 'HomeController',
             'cycles' => $cycleRepository->findAll(),
-            'techniques' => $techniqueReopsitory->findByPosition('3/4 Mount Over/Under')
+            'techniques' => $techniqueReopsitory->findByPosition('Butterfly Guard Over/Under')
         ]);
     }
 
