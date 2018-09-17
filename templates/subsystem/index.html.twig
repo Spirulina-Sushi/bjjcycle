@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Subsystem index{% endblock %}
+
+{% block body %}
+    <h1>Subsystem index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for subsystem in subsystems %}
+            <tr>
+                <td>{{ subsystem.id }}</td>
+                <td>{{ subsystem.name }}</td>
+                <td>
+                    <a href="{{ path('subsystem_show', {'id': subsystem.id}) }}">show</a>
+                    <a href="{{ path('subsystem_edit', {'id': subsystem.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('subsystem_new') }}">Create new</a>
+{% endblock %}

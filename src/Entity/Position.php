@@ -19,7 +19,7 @@ class Position
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\SubSystem", inversedBy="positions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Subsystem", inversedBy="positions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $subsystem;
@@ -73,12 +73,12 @@ class Position
         return $this->id;
     }
 
-    public function getSubsystem(): ?SubSystem
+    public function getSubsystem(): ?Subsystem
     {
         return $this->subsystem;
     }
 
-    public function setSubsystem(?SubSystem $subsystem): self
+    public function setSubsystem(?Subsystem $subsystem): self
     {
         $this->subsystem = $subsystem;
 

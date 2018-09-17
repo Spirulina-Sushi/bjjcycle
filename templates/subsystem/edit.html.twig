@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Subsystem{% endblock %}
+
+{% block body %}
+    <h1>Edit Subsystem</h1>
+
+    {{ include('subsystem/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('subsystem_index') }}">back to list</a>
+
+    {{ include('subsystem/_delete_form.html.twig') }}
+{% endblock %}

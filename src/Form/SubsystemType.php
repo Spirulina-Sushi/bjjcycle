@@ -2,24 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\SubSystem;
+use App\Entity\Subsystem;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SubSystemType extends AbstractType
+class SubsystemType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
+            ->add('system')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => SubSystem::class,
+            'data_class' => Subsystem::class,
         ]);
     }
 }

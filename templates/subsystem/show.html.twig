@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Subsystem{% endblock %}
+
+{% block body %}
+    <h1>Subsystem</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ subsystem.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ subsystem.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('subsystem_index') }}">back to list</a>
+
+    <a href="{{ path('subsystem_edit', {'id': subsystem.id}) }}">edit</a>
+
+    {{ include('subsystem/_delete_form.html.twig') }}
+{% endblock %}
