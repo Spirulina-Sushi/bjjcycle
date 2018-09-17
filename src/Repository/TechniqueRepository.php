@@ -22,16 +22,6 @@ class TechniqueRepository extends ServiceEntityRepository
     /**
      * @return Technique[] Returns an array of Technique objects
      */
-
-    public function findByPosition2($position)
-    {
-        $qb = $this->createQueryBuilder('pos')
-            ->addOrderBy('pos.name', 'ASC');
-        $query = $qb->getQuery();
-
-        return $query->execute();
-    }
-
     public function findByPosition($position)
     {
         return $this->createQueryBuilder('t')
