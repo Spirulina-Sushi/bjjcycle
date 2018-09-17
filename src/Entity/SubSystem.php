@@ -29,6 +29,12 @@ class SubSystem
      */
     private $positions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\System", inversedBy="subsystem")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $system;
+
     public function __construct()
     {
         $this->positions = new ArrayCollection();
@@ -84,6 +90,18 @@ class SubSystem
                 $position->setSubsystem(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSystem(): ?System
+    {
+        return $this->system;
+    }
+
+    public function setSystem(?System $system): self
+    {
+        $this->system = $system;
 
         return $this;
     }

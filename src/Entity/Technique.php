@@ -42,11 +42,6 @@ class Technique
      */
     private $video;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Game")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $game;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Cycle", inversedBy="techniques")
@@ -145,17 +140,6 @@ class Technique
         return $this;
     }
 
-    public function getGame(): ?Game
-    {
-        return $this->game;
-    }
-
-    public function setGame(?Game $game): self
-    {
-        $this->game = $game;
-
-        return $this;
-    }
 
     public function getCycle(): ?Cycle
     {

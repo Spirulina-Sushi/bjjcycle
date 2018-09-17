@@ -79,11 +79,12 @@ class User implements UserInterface, \Serializable
      * @ORM\ManyToOne(targetEntity="App\Entity\Position", inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $currentPosition;
+    private $currentPositionStanding;
 
     public function __construct()
     {
         $this->join_date = new \DateTime();
+        $this->currentPosition =
         $this->isActive = true;
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
