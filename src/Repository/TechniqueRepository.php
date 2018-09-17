@@ -34,8 +34,9 @@ class TechniqueRepository extends ServiceEntityRepository
 
     public function findByPosition($position)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.startPosition = :position')
+        return $this->createQueryBuilder('t')
+            ->leftJoin('t.startPosition', 'p')
+            ->andWhere('p.name = :position')
             ->setParameter('position', $position)
             ->orderBy('p.name', 'ASC')
             ->setMaxResults(10)
