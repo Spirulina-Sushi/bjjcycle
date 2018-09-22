@@ -6,6 +6,8 @@ use App\Entity\Technique;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+
+
 /**
  * @method Technique|null find($id, $lockMode = null, $lockVersion = null)
  * @method Technique|null findOneBy(array $criteria, array $orderBy = null)
@@ -24,6 +26,7 @@ class TechniqueRepository extends ServiceEntityRepository
      */
     public function findByPosition($position)
     {
+
         return $this->createQueryBuilder('t')
             ->leftJoin('t.startPosition', 'p')
             ->andWhere('p.name = :position')

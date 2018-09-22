@@ -28,13 +28,20 @@ class HomeController extends AbstractController
      */
     public function maintenance(Security $security, CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory, UserRepository $userRepository): Response
     {
-//        $userId = $security->getUser();
+        $em = $this->getDoctrine()->getManager();
+
+        $id = $security->getUser();
+        $user = $em->getRepository('App\Entity\User')->find($id);
+        $currentPositionGround = $em->getRepository('App\Entity\User')->find($id)->getCurrentPositionGround()->getName();
+
+        $techniques = $em->getRepository('App\Entity\Technique')->findByPosition($currentPositionGround);
+
 
         return $this->render('home/maintenance.html.twig', [
-            'controller_name' => 'HomeController',
+            'position' => $currentPositionGround,
             'cycles' => $cycleRepository->findAll(),
-            'techniques' => $techniqueReopsitory->findByPosition('Butterfly Guard Over/Under'),
-//            'user' => $userRepository->find($userId)
+            'techniques' => $techniques,
+            'user' => $user
         ]);
     }
 
@@ -44,7 +51,6 @@ class HomeController extends AbstractController
     public function focus(CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory): Response
     {
         return $this->render('home/focus.html.twig', [
-            'controller_name' => 'HomeController',
             'cycles' => $cycleRepository->findAll(),
             'techniques' => $techniqueReopsitory->findAll()
         ]);
