@@ -9,7 +9,7 @@
             <div class="col-md-9">
                 <main role="main" class="inner cover">
                     <h1 class="cover-heading">Maintenance Cycle</h1>
-                    <p class="lead">The 'fast' cycle alows you to keep all your techniques sharp.</p>
+                    <p class="lead">The 'fast' cycle allows you to keep all your techniques sharp.</p>
 
                     <div class="row">
                         <div class="col-lg-6">
@@ -20,7 +20,7 @@
                                     Today's Drills for <br>
                                     <strong>{{ user.currentPositionGround }}</strong></li>
 
-                                {% for technique in techniques %}
+                                {% for technique in techniquesGround %}
 
                                     <li class="list-group-item">{{ technique.name }}
 
@@ -81,7 +81,7 @@
                                     Today's Drills for <br>
                                     <strong>{{ user.currentPositionGround }}</strong></li>
 
-                                {% for technique in techniques %}
+                                {% for technique in techniquesStanding %}
 
                                     <li class="list-group-item">{{ technique.name }}
 
@@ -158,12 +158,12 @@
 
                             <li class="list-group-item">
                                 Each Period Lasts
-                                <a href="/cycle/2/edit" class="badge badge-secondary">{{ cycle.period }}</a><br>
+                                <a href="{{ path('profile') }}" class="badge badge-secondary">{{ cycle.period }}</a><br>
                                 Total Techniques
                                 <a href="/technique/new" class="badge badge-secondary">{{ techniques|length }}
                                     !!!</a><br>
                                 The Maintenance Cycle Lasts
-                                <a href="/cycle/2" class="badge badge-secondary">2 Years</a><br>
+                                <a href="{{ path('profile') }}" class="badge badge-secondary">2 Years</a><br>
                             </li>
 
                         </ul>

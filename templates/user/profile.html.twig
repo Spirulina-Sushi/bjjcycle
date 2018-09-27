@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <h1>Yo, {{ user.username }}!!!</h1>
+
+<p>
+    <strong>Ideas</strong><br>
+    Your  Maintenance Cycle lasts: This long<br>
+    Your  Focus Cycle lasts: This long<br>
+
+
+</p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-8">
+                <table class="table table-hover table-sm">
+                    <thead>
+                    <tr class="table-secondary">
+                        <th scope="col">Thing</th>
+                        <th scope="col" colspan="2">Settings</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Ground Position</th>
+                        <td colspan="2">{{ user.currentPositionGround }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Standing Position</th>
+                        <td colspan="2">{{ user.currentPositionStanding }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Maintenance Cycle</th>
+                        <td>{{ user.mSeshPerWeek }} Session / Week</td>
+                        <td>{{ user.mSeshPerVariant }} Session / Variant</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Focus Cycle</th>
+                        <td>{{ user.fSeshPerWeek }} Session / Week</td>
+                        <td>{{ user.fSeshPerVariant }} Session / Variant</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

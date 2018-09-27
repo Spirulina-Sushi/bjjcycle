@@ -33,14 +33,19 @@ class HomeController extends AbstractController
         $id = $security->getUser();
         $user = $em->getRepository('App\Entity\User')->find($id);
         $currentPositionGround = $em->getRepository('App\Entity\User')->find($id)->getCurrentPositionGround()->getName();
+        $currentPositionStanding = $em->getRepository('App\Entity\User')->find($id)->getCurrentPositionStanding()->getName();
+        $techniquesGround = $em->getRepository('App\Entity\Technique')->findByPosition($currentPositionGround);
+        $techniquesStanding = $em->getRepository('App\Entity\Technique')->findByPosition($currentPositionStanding);
 
-        $techniques = $em->getRepository('App\Entity\Technique')->findByPosition($currentPositionGround);
-
+echo($currentPositionGround);
+echo($currentPositionStanding);
 
         return $this->render('home/maintenance.html.twig', [
             'position' => $currentPositionGround,
             'cycles' => $cycleRepository->findAll(),
-            'techniques' => $techniques,
+            'techniquesGround' => $techniquesGround,
+            'techniquesStanding' => $techniquesStanding,
+            'techniques' => $techniqueReopsitory->findAll(),
             'user' => $user
         ]);
     }
