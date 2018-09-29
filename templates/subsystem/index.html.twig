@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th><a href="{{ path('system_index') }}">System</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ subsystem.id }}</td>
                 <td>{{ subsystem.name }}</td>
+                <td>{{ subsystem.system }}</td>
                 <td>
                     <a href="{{ path('subsystem_show', {'id': subsystem.id}) }}">show</a>
                     <a href="{{ path('subsystem_edit', {'id': subsystem.id}) }}">edit</a>

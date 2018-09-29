@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Subsystem;
 use App\Form\SubsystemType;
 use App\Repository\SubsystemRepository;
+use App\Repository\SystemRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +19,12 @@ class SubsystemController extends AbstractController
     /**
      * @Route("/", name="subsystem_index", methods="GET")
      */
-    public function index(SubsystemRepository $subsystemRepository): Response
+    public function index(SubsystemRepository $subsystemRepository, SystemRepository $systemRepository): Response
     {
-        return $this->render('subsystem/index.html.twig', ['subsystems' => $subsystemRepository->findAll()]);
+        return $this->render('subsystem/index.html.twig', [
+            'subsystems' => $subsystemRepository->findAll(),
+            'systems' => $systemRepository->findAll(),
+        ]);
     }
 
     /**
