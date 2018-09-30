@@ -37,9 +37,6 @@ class HomeController extends AbstractController
         $techniquesGround = $em->getRepository('App\Entity\Technique')->findByPosition($currentPositionGround);
         $techniquesStanding = $em->getRepository('App\Entity\Technique')->findByPosition($currentPositionStanding);
 
-echo($currentPositionGround);
-echo($currentPositionStanding);
-
         return $this->render('home/maintenance.html.twig', [
             'position' => $currentPositionGround,
             'cycles' => $cycleRepository->findAll(),

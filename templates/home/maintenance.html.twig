@@ -18,7 +18,11 @@
                                 <li class="list-group-item list-group-item-secondary">
                                     <h3>Ground Work</h3>
                                     Today's Drills for <br>
-                                    <strong>{{ user.currentPositionGround }}</strong></li>
+                                    <div class="float-left"><i class="fas fa-angle-left"></i></div>
+                                    <strong><a href="{{ path('profile') }}">{{ user.currentPositionGround }}</a></strong>
+                                    <div class="float-right"><i class="fas fa-angle-right"></i></div>
+                                </li>
+
 
                                 {% for technique in techniquesGround %}
 
@@ -79,7 +83,10 @@
                                 <li class="list-group-item list-group-item-light">
                                     <h3>Take Downs</h3>
                                     Today's Drills for <br>
-                                    <strong>{{ user.currentPositionGround }}</strong></li>
+                                    <div class="float-left"><i class="fas fa-angle-left"></i></div>
+                                    <strong><a href="{{ path('profile') }}">{{ user.currentPositionStanding }}</a></strong>
+                                    <div class="float-right"><i class="fas fa-angle-right"></i></div>
+                                </li>
 
                                 {% for technique in techniquesStanding %}
 
