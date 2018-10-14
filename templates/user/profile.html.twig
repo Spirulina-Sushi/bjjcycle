@@ -23,27 +23,45 @@
                     <thead>
                     <tr class="table-secondary">
                         <th scope="col">Thing</th>
-                        <th scope="col" colspan="2">Settings</th>
+                        <th scope="col" colspan="3">Settings</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <th scope="row">Ground Position</th>
-                        <td colspan="2">{{ user.currentPositionGround }}</td>
+                        <td colspan="3">{{ user.currentPositionGround }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Dummy Ground Position</th>
+                        <td colspan="3">{{ dummyPositionGround }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Standing Position</th>
-                        <td colspan="2">{{ user.currentPositionStanding }}</td>
+                        <td colspan="3">{{ user.currentPositionStanding }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Maintenance Cycle</th>
                         <td>{{ user.mSeshPerWeek }} Session / Week</td>
                         <td>{{ user.mSeshPerVariant }} Session / Variant</td>
+                        <td>{{ user.mOffset}} Offset</td>
                     </tr>
                     <tr>
                         <th scope="row">Focus Cycle</th>
                         <td>{{ user.fSeshPerWeek }} Session / Week</td>
                         <td>{{ user.fSeshPerVariant }} Session / Variant</td>
+                        <td>{{ user.fOffset }} Offset</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Join Date</th>
+                        <td>{{ user.joinDate|date("d/m/Y") }} </td>
+                        <td>{{ weeksSinceJoin }} weeks on site</td>
+                        <td>Week {{ focusWeek }} of {{ techniques|length }} </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Database</th>
+                        <td>{{ subsystems|length }} Ground Subsystems </td>
+                        <td>{{ subsystems|length }} Standing Subsystems </td>
+                        <td>{{ techniques|length }} Techniques </td>
                     </tr>
                     </tbody>
                 </table>
