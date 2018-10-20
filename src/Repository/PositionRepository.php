@@ -19,22 +19,24 @@ class PositionRepository extends ServiceEntityRepository
         parent::__construct($registry, Position::class);
     }
 
-//    /**
-//     * @return Position[] Returns an array of Position objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Position[] Returns an array of Position objects
+     */
+//    /*
+    public function findByGame($game)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->leftJoin('p.subsystem', 'ss')
+            ->leftJoin('ss.system', 's')
+            ->leftJoin('s.game', 'g')
+            ->andWhere('g.name = :game')
+            ->setParameter('game', $game)
+            ->orderBy('p.name', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Position

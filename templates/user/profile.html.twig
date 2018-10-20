@@ -5,20 +5,13 @@
 {% block body %}
     <h1>Yo, {{ user.username }}!!!</h1>
 
-<p>
-    <strong>Ideas</strong><br>
-    Your  Maintenance Cycle lasts: This long<br>
-    Your  Focus Cycle lasts: This long<br>
-
-
-</p>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1">
 
             </div>
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <table class="table table-hover table-sm">
                     <thead>
                     <tr class="table-secondary">
@@ -32,12 +25,20 @@
                         <td colspan="3">{{ user.currentPositionGround }}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Dummy Ground Position</th>
-                        <td colspan="3">{{ dummyPositionGround }}</td>
+                        <th scope="row">Standing Position</th>
+                        <td colspan="3">{{ user.currentPositionStanding.subsystem.system.game }}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Standing Position</th>
-                        <td colspan="3">{{ user.currentPositionStanding }}</td>
+                        <th scope="row">Focus Ground Position</th>
+                        <td >{{ focusPositionGround.name }}</td>
+                        <td >{{ focusPositionGround.subsystem.system }}</td>
+                        <td >{{ focusPositionGround.subsystem.system.game }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Focus Standing Position</th>
+                        <td >{{ focusPositionStanding.name }}</td>
+                        <td >{{ focusPositionStanding.subsystem.system }}</td>
+                        <td >{{ focusPositionStanding.subsystem.system.game }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Maintenance Cycle</th>
@@ -46,27 +47,21 @@
                         <td>{{ user.mOffset}} Offset</td>
                     </tr>
                     <tr>
-                        <th scope="row">Focus Cycle</th>
-                        <td>{{ user.fSeshPerWeek }} Session / Week</td>
-                        <td>{{ user.fSeshPerVariant }} Session / Variant</td>
-                        <td>{{ user.fOffset }} Offset</td>
-                    </tr>
-                    <tr>
                         <th scope="row">Join Date</th>
                         <td>{{ user.joinDate|date("d/m/Y") }} </td>
                         <td>{{ weeksSinceJoin }} weeks on site</td>
-                        <td>Week {{ focusWeek }} of {{ techniques|length }} </td>
+                        <td>Week {{ focusWeekGround }} of {{ positionsGround|length }} </td>
                     </tr>
                     <tr>
                         <th scope="row">Database</th>
-                        <td>{{ subsystems|length }} Ground Subsystems </td>
-                        <td>{{ subsystems|length }} Standing Subsystems </td>
+                        <td>{{ positionsGround|length }} Ground Subsystems </td>
+                        <td>{{ positionsStanding|length }} Standing Subsystems </td>
                         <td>{{ techniques|length }} Techniques </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
 
             </div>
         </div>
