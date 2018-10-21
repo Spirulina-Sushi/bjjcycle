@@ -22,12 +22,9 @@ class UserController extends Controller
 
         $id = $security->getUser();
         $user = $em->getRepository('App\Entity\User')->find($id);
-        $joinDate = $em->getRepository('App\Entity\User')->find($id)->getJoinDate();
         $OffsetGround = $em->getRepository('App\Entity\User')->find($id)->getMOffset();
         $OffsetStanding = $em->getRepository('App\Entity\User')->find($id)->getFOffset();
-
-        $today = new \dateTime();
-        $weeksSinceJoin = floor($joinDate->diff($today)->format("%d") / 7);
+        $weeksSinceJoin = $em->getRepository('App\Entity\User')->find($id)->getWeeksOnSite();
 
         $positionsGround = $em->getRepository('app\entity\position')->findByGame('ground');
         $positionsStanding = $em->getRepository('app\entity\position')->findByGame('standing');

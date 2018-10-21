@@ -36,7 +36,7 @@ class User implements UserInterface, \Serializable
     private $email;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $join_date;
 
@@ -86,6 +86,11 @@ class User implements UserInterface, \Serializable
      * @ORM\JoinColumn(nullable=false)
      */
     private $currentPositionGround;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $weeksOnSite;
 
     public function __construct()
     {
@@ -279,6 +284,18 @@ class User implements UserInterface, \Serializable
     public function setCurrentPositionGround(?Position $currentPositionGround): self
     {
         $this->currentPositionGround = $currentPositionGround;
+
+        return $this;
+    }
+
+    public function getWeeksOnSite(): ?int
+    {
+        return $this->weeksOnSite;
+    }
+
+    public function setWeeksOnSite(int $weeksOnSite): self
+    {
+        $this->weeksOnSite = $weeksOnSite;
 
         return $this;
     }
