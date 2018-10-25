@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,66 +17,40 @@ class Video
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Position", inversedBy="videos")
      */
-    private $url;
+    private $position;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Technique", mappedBy="video")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Technique", inversedBy="videos")
      */
-    private $techniques;
-
-    public function __construct()
-    {
-        $this->techniques = new ArrayCollection();
-    }
+    private $technique;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUrl(): ?string
+    public function getPosition(): ?Position
     {
-        return $this->url;
+        return $this->position;
     }
 
-    public function setUrl(string $url): self
+    public function setPosition(?Position $position): self
     {
-        $this->url = $url;
+        $this->position = $position;
 
         return $this;
     }
 
-    public function __toString()
+    public function getTechnique(): ?Technique
     {
-        return (string) $this->url;
-    }
-    
-    /**
-     * @return Collection|Technique[]
-     */
-    public function getTechniques(): Collection
-    {
-        return $this->techniques;
+        return $this->technique;
     }
 
-    public function addTechnique(Technique $technique): self
+    public function setTechnique(?Technique $technique): self
     {
-        if (!$this->techniques->contains($technique)) {
-            $this->techniques[] = $technique;
-            $technique->addVideo($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTechnique(Technique $technique): self
-    {
-        if ($this->techniques->contains($technique)) {
-            $this->techniques->removeElement($technique);
-            $technique->removeVideo($this);
-        }
+        $this->technique = $technique;
 
         return $this;
     }

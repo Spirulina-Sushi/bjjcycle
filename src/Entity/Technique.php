@@ -37,11 +37,6 @@ class Technique
      */
     private $catagory;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Video", inversedBy="techniques")
-     */
-    private $video;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Cycle", inversedBy="techniques")
@@ -61,11 +56,17 @@ class Technique
      */
     private $endPosition;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="technique")
+     */
+    private $videos;
+
     public function __construct()
     {
         $this->video = new ArrayCollection();
         $this->startPosition = new ArrayCollection();
         $this->endPosition = new ArrayCollection();
+        $this->videos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,32 +111,6 @@ class Technique
     public function setCatagory(?Catagory $catagory): self
     {
         $this->catagory= $catagory;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Video[]
-     */
-    public function getVideo(): Collection
-    {
-        return $this->video;
-    }
-
-    public function addVideo(Video $video): self
-    {
-        if (!$this->video->contains($video)) {
-            $this->video[] = $video;
-        }
-
-        return $this;
-    }
-
-    public function removeVideo(Video $video): self
-    {
-        if ($this->video->contains($video)) {
-            $this->video->removeElement($video);
-        }
 
         return $this;
     }
@@ -200,6 +175,37 @@ class Technique
     {
         if ($this->endPosition->contains($endPosition)) {
             $this->endPosition->removeElement($endPosition);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+            $video->setTechnique($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        if ($this->videos->contains($video)) {
+            $this->videos->removeElement($video);
+            // set the owning side to null (unless already changed)
+            if ($video->getTechnique() === $this) {
+                $video->setTechnique(null);
+            }
         }
 
         return $this;

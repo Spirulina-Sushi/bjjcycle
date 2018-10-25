@@ -60,12 +60,18 @@ class Position
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="position")
+     */
+    private $videos;
+
     public function __construct()
     {
         $this->techniques = new ArrayCollection();
         $this->techniquesEnd = new ArrayCollection();
         $this->techniquesStart = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->videos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -241,6 +247,37 @@ class Position
             // set the owning side to null (unless already changed)
             if ($user->getCurrentPosition() === $this) {
                 $user->setCurrentPosition(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+            $video->setPosition($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        if ($this->videos->contains($video)) {
+            $this->videos->removeElement($video);
+            // set the owning side to null (unless already changed)
+            if ($video->getPosition() === $this) {
+                $video->setPosition(null);
             }
         }
 
