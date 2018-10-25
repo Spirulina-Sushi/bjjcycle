@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="147a3d76-0e7b-47e6-8dcb-ac830f23cac0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/VideoController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Technique.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Technique.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Video.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/VideoType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/VideoRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/video/_delete_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/video/_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/video/edit.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/video/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/video/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/video/show.html.twig" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,8 +101,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Entity/Technique.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="112" selection-start-line="112" selection-end-line="112" />
+            <state relative-caret-position="517">
+              <caret line="118" selection-start-line="118" selection-end-line="118" />
               <folding>
                 <element signature="e#30#78#0#PHP" expanded="true" />
               </folding>
@@ -282,35 +282,6 @@
             <path>
               <item name="BJJCycle" type="b2602c69:ProjectViewProjectNode" />
               <item name="BJJCycle" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BJJCycle" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BJJCycle" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BJJCycle" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BJJCycle" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BJJCycle" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BJJCycle" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Form" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BJJCycle" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BJJCycle" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BJJCycle" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BJJCycle" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -370,12 +341,12 @@
       <workItem from="1539275728604" duration="989000" />
       <workItem from="1539327981908" duration="12165000" />
       <workItem from="1539797182508" duration="14036000" />
-      <workItem from="1540309129112" duration="3613000" />
+      <workItem from="1540309129112" duration="4168000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142894000" />
+    <option name="totallyTimeSpent" value="143449000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -388,7 +359,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1633888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -762,8 +732,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Technique.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        <state relative-caret-position="517">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
           <folding>
             <element signature="e#30#78#0#PHP" expanded="true" />
           </folding>

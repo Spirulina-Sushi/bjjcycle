@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Url</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -17,7 +16,6 @@
         {% for video in videos %}
             <tr>
                 <td>{{ video.id }}</td>
-                <td>{{ video.url }}</td>
                 <td>
                     <a href="{{ path('video_show', {'id': video.id}) }}">show</a>
                     <a href="{{ path('video_edit', {'id': video.id}) }}">edit</a>
@@ -25,7 +23,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="2">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
