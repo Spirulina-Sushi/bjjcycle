@@ -32,10 +32,19 @@ class HomeController extends AbstractController
 
         $id = $security->getUser();
         $user = $em->getRepository('App\Entity\User')->find($id);
-        $currentPositionGround = $em->getRepository('App\Entity\User')->find($id)->getCurrentPositionGround()->getName();
-        $currentPositionStanding = $em->getRepository('App\Entity\User')->find($id)->getCurrentPositionStanding()->getName();
+        $currentPositionGroundId = $em->getRepository('App\Entity\User')->find($id)->getCurrentPositionGround();
+        $currentPositionGround = $currentPositionGroundId->getName();
+        $currentPositionStandingId = $em->getRepository('App\Entity\User')->find($id)->getCurrentPositionStanding();
+        $currentPositionStanding = $currentPositionStandingId->getName();
         $techniquesGround = $em->getRepository('App\Entity\Technique')->findByPosition($currentPositionGround);
         $techniquesStanding = $em->getRepository('App\Entity\Technique')->findByPosition($currentPositionStanding);
+
+        $videotest = $em->getRepository('App\Entity\video')->findBy([
+            'position' => $currentPositionGroundId,
+            'technique' => $techniquesGround
+        ]);
+
+//        https://getbootstrap.com/docs/4.1/components/modal/
 
         return $this->render('home/maintenance.html.twig', [
             'position' => $currentPositionGround,
@@ -43,7 +52,8 @@ class HomeController extends AbstractController
             'techniquesGround' => $techniquesGround,
             'techniquesStanding' => $techniquesStanding,
             'techniques' => $techniqueReopsitory->findAll(),
-            'user' => $user
+            'user' => $user,
+            'videos' => $videotest
         ]);
     }
 

@@ -34,6 +34,7 @@ class UserController extends Controller
         $focusPositionGround = $positionsGround[$focusWeekGround - 1 + $OffsetGround];
         $focusPositionStanding = $positionsStanding[$focusWeekStanding - 1 + $OffsetStanding];
 
+
         return $this->render('user/profile.html.twig', [
             'focusPositionGround' => $focusPositionGround,
             'focusPositionStanding' => $focusPositionStanding,

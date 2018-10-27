@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VideoRepository")
  */
@@ -25,6 +26,21 @@ class Video
      * @ORM\ManyToOne(targetEntity="App\Entity\Technique", inversedBy="videos")
      */
     private $technique;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $url;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $start;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $stop;
 
     public function getId(): ?int
     {
@@ -51,6 +67,42 @@ class Video
     public function setTechnique(?Technique $technique): self
     {
         $this->technique = $technique;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function getStart(): ?int
+    {
+        return $this->start;
+    }
+
+    public function setStart(?int $start): self
+    {
+        $this->start = $start;
+
+        return $this;
+    }
+
+    public function getStop(): ?int
+    {
+        return $this->stop;
+    }
+
+    public function setStop(?int $stop): self
+    {
+        $this->stop = $stop;
 
         return $this;
     }
