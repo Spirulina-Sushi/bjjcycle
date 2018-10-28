@@ -56,6 +56,9 @@
 
                                                     <div class="modal-body"
                                                          id="exampleModalCenterBody{{ technique.id }}">
+                                                        {%  for video in videos %}
+                                                            {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
+                                                        {% endfor %}
                                                         <iframe src="
                                                         {%  for video in videos %}
                                                             {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
@@ -64,7 +67,9 @@
                                                                 frameborder="0" allow="autoplay; encrypted-media"
                                                                 allowfullscreen>
                                                         </iframe>
-
+                                                        {%  for video in videos %}
+                                                            {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
+                                                        {% endfor %}
                                                     </div>
 
                                                     <div class="modal-footer">
