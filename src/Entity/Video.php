@@ -106,4 +106,9 @@ class Video
 
         return $this;
     }
+
+    public function getUrlStartTime(): ?string
+    {
+        return $this->url."&t=".$this->start."s";
+    }
 }

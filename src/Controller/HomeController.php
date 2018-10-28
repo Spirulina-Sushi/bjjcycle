@@ -43,6 +43,7 @@ class HomeController extends AbstractController
             'position' => $currentPositionGroundId,
             'technique' => $techniquesGround
         ]);
+        echo($videotest[1]->getUrlStartTime());
 
 //        https://getbootstrap.com/docs/4.1/components/modal/
 

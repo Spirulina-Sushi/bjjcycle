@@ -45,7 +45,7 @@
                                                         <h5 class="modal-title"
                                                             id="exampleModalCenterTitle{{ technique.id }}">{{ technique.name }} Video
                                                             {%  for video in videos %}
-                                                                {% if technique.name == video.technique.name %} {{ video.url }}{% endif %}
+                                                                {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
                                                             {% endfor %}
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
@@ -58,7 +58,7 @@
                                                          id="exampleModalCenterBody{{ technique.id }}">
                                                         <iframe src="
                                                         {%  for video in videos %}
-                                                            {% if technique.name == video.technique.name %} {{ video.url }}{% endif %}
+                                                            {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
                                                         {% endfor %}
                                                         "
                                                                 frameborder="0" allow="autoplay; encrypted-media"
