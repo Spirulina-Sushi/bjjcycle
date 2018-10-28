@@ -30,8 +30,6 @@ class TechniqueRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('t')
             ->leftJoin('t.startPosition', 'p')
             ->andWhere('p.name = :position')
-//            ->leftJoin('t.videos', 'v')
-//            ->andWhere('v.url = :video')
             ->setParameter('position', $position)
             ->orderBy('p.name', 'ASC')
             ->setMaxResults(10)

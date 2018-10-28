@@ -34,6 +34,14 @@ class UserController extends Controller
         $focusPositionGround = $positionsGround[$focusWeekGround - 1 + $OffsetGround];
         $focusPositionStanding = $positionsStanding[$focusWeekStanding - 1 + $OffsetStanding];
 
+        $currentPositionGroundId = $em->getRepository('App\Entity\User')->find($id)->getCurrentPositionGround();
+        $currentPositionGround = $currentPositionGroundId->getName();
+        $currentPositionStandingId = $em->getRepository('App\Entity\User')->find($id)->getCurrentPositionStanding();
+        $currentPositionStanding = $currentPositionStandingId->getName();
+        $techniquesGround = $em->getRepository('App\Entity\Technique')->findByPosition($currentPositionGround);
+        $techniquesStanding = $em->getRepository('App\Entity\Technique')->findByPosition($currentPositionStanding);
+
+        //        dump($techniqueReopsitory->findAll());
 
         return $this->render('user/profile.html.twig', [
             'focusPositionGround' => $focusPositionGround,
@@ -43,7 +51,8 @@ class UserController extends Controller
             'focusWeekGround' => $focusWeekGround,
             'focusWeekStanding' => $focusWeekStanding,
             'user' => $user,
-            'techniques' => $techniqueReopsitory->findAll(),
+            'techniquesGround' => $techniquesGround,
+            'techniquesStanding' => $techniquesStanding,
             'weeksSinceJoin' => $weeksSinceJoin
         ]);
     }

@@ -32,21 +32,18 @@
                                         <button type="button"
                                                 class="btn btn-secondary btn-sm"
                                                 data-toggle="modal"
-                                                data-target="#exampleModalCenter{{ technique.id }}"
+                                                data-target="#ModalCenter{{ technique.id }}"
                                                 style="float: right;"> Video
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModalCenter{{ technique.id }}" tabindex="-1" role="dialog"
-                                             aria-labelledby="exampleModalCenterTitle{{ technique.id }}" aria-hidden="true">
+                                        <div class="modal fade" id="ModalCenter{{ technique.id }}" tabindex="-1" role="dialog"
+                                             aria-labelledby="ModalCenterTitle{{ technique.id }}" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title"
-                                                            id="exampleModalCenterTitle{{ technique.id }}">{{ technique.name }} Video
-                                                            {%  for video in videos %}
-                                                                {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
-                                                            {% endfor %}
+                                                            id="ModalCenterTitle{{ technique.id }}">{{ technique.name }} Video
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
@@ -55,15 +52,14 @@
                                                     </div>
 
                                                     <div class="modal-body"
-                                                         id="exampleModalCenterBody{{ technique.id }}">
+                                                         id="ModalCenterBody{{ technique.id }}">
                                                         {%  for video in videos %}
                                                             {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
                                                         {% endfor %}
-                                                        <iframe src="
-                                                        {%  for video in videos %}
-                                                            {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
-                                                        {% endfor %}
-                                                        "
+                                                        <iframe id="iframe{{ technique.id }}"
+                                                                src={%  for video in videos %}
+                                                                        {% if technique.name == video.technique.name %} {{ video.urlStartTime }}&wmode=transparent{% endif %}
+                                                                     {% endfor %}
                                                                 frameborder="0" allow="autoplay; encrypted-media"
                                                                 allowfullscreen>
                                                         </iframe>

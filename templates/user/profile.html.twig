@@ -50,14 +50,20 @@
                         <th scope="row">Join Date</th>
                         <td>{{ user.joinDate|date("d/m/Y") }} </td>
                         <td>{{ weeksSinceJoin }} weeks on site</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Database Ground </th>
+                        <td>{{ positionsGround|length }} Ground Subsystems </td>
+                        <td>{{ techniquesGround|length }} Ground Techniques </td>
                         <td>Week {{ focusWeekGround }} of {{ positionsGround|length }} </td>
                     </tr>
                     <tr>
-                        <th scope="row">Database</th>
-                        <td>{{ positionsGround|length }} Ground Subsystems </td>
+                        <th scope="row">Database Standing </th>
                         <td>{{ positionsStanding|length }} Standing Subsystems </td>
-                        <td>{{ techniques|length }} Techniques </td>
+                        <td>{{ techniquesStanding|length }} Standing Techniques </td>
+                        <td>Week {{ focusWeekStanding}} of {{ positionsStanding|length }} </td>
                     </tr>
+
                     </tbody>
                 </table>
             </div>
