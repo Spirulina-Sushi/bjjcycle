@@ -61,6 +61,7 @@ class HomeController extends AbstractController
      */
     public function focus(CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory): Response
     {
+
         return $this->render('home/focus.html.twig', [
             'cycles' => $cycleRepository->findAll(),
             'techniques' => $techniqueReopsitory->findAll()
@@ -72,6 +73,16 @@ class HomeController extends AbstractController
      */
     public function flow(CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory, PositionRepository $positionRepository): Response
     {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $game = 'Standing';
+        $flowStarter = $em->getRepository('App\Entity\Technique')->findFlowStarterStanding($game);
+        $flowIteration1 = $em->getRepository('App\Entity\Technique')->findFlowIteration($flowStarter->getEndPosition());
+        dump($flowStarter);
+        dump($flowIteration1);
+//        echo($flowStarter->getStartPosition()->getName());
+//        echo($flowStarter->getEndPosition()->getName());
         return $this->render('home/flow.html.twig', [
             'controller_name' => 'HomeController',
             'cycles' => $cycleRepository->findAll(),

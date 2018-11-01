@@ -15,7 +15,6 @@ class TechniqueType extends AbstractType
             ->add('name')
             ->add('player')
             ->add('catagory')
-            ->add('video')
             ->add('cycle')
             ->add('startPosition')
             ->add('endPosition')

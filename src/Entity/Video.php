@@ -109,6 +109,6 @@ class Video
 
     public function getUrlStartTime(): ?string
     {
-        return $this->url."&t=".$this->start."s";
+        return $this->url."?start=".$this->start;
     }
 }

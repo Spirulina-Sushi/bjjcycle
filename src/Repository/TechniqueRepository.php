@@ -39,15 +39,31 @@ class TechniqueRepository extends ServiceEntityRepository
     }
 
 
-    /*
-    public function findOneBySomeField($value): ?Technique
+
+    public function findFlowStarterStanding($game): ?Technique
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+        return $this->createQueryBuilder('t')
+            ->leftJoin('t.startPosition', 'p')
+            ->leftJoin('p.subsystem', 'ss')
+            ->leftJoin('ss.system', 's')
+            ->leftJoin('s.game', 'g')
+            ->andWhere('g.name = :game')
+            ->setParameter('game', $game)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
+    
+    public function findFlowIteration($startingPosition): ?Technique
+    {
+        return $this->createQueryBuilder('t')
+            ->leftJoin('t.startPosition', 'p')
+            ->andWhere('p.name = :position')
+            ->setParameter('position', $startingPosition)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
 }

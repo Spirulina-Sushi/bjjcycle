@@ -39,7 +39,7 @@
                                         <!-- Modal -->
                                         <div class="modal fade" id="ModalCenter{{ technique.id }}" tabindex="-1" role="dialog"
                                              aria-labelledby="ModalCenterTitle{{ technique.id }}" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-dialog modal-dialog-centered" role="document" >
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title"
@@ -53,19 +53,14 @@
 
                                                     <div class="modal-body"
                                                          id="ModalCenterBody{{ technique.id }}">
-                                                        {%  for video in videos %}
-                                                            {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
-                                                        {% endfor %}
                                                         <iframe id="iframe{{ technique.id }}"
-                                                                src={%  for video in videos %}
-                                                                        {% if technique.name == video.technique.name %} {{ video.urlStartTime }}&wmode=transparent{% endif %}
-                                                                     {% endfor %}
+                                                                src="{%  for video in videos %}
+                                                                        {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
+                                                                     {% endfor %}"
                                                                 frameborder="0" allow="autoplay; encrypted-media"
                                                                 allowfullscreen>
                                                         </iframe>
-                                                        {%  for video in videos %}
-                                                            {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
-                                                        {% endfor %}
+
                                                     </div>
 
                                                     <div class="modal-footer">
