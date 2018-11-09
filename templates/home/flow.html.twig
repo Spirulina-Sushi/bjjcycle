@@ -13,65 +13,34 @@
 
                     <div class="row">
                         <div class="col-sm-12">
+
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-secondary">
                                     <h3>Random Flow</h3>
                                 </li>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <ul class="list-group">
-                                            <li class="list-group-item list-group-item-primary"><strong>Position</strong></li>
-                                            <li class="list-group-item">
-                                                <p>
-                                                    Butterfly Guard<br>
-                                                    3/4 Mount<br>
-                                                    Back Weak Side<br>
-                                                    Armbar Bottom<br>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <ul class="list-group">
-                                            <li class="list-group-item list-group-item-info"><strong>Technique</strong></li>
-                                            <li class="list-group-item">
-                                                <p>
-                                                    Butterfly Sweep<br>
-                                                    Gift Wrap Back Take<br>
-                                                    Frame & Leg Over<br>
-                                                    Armbar<br>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <ul class="list-group">
-                                            <li class="list-group-item list-group-item-success"><strong>Type</strong></li>
-                                            <li class="list-group-item">
-                                                <p>
-                                                    Sweep<br>
-                                                    Back Take<br>
-                                                    Transition<br>
-                                                    Submission<br>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <ul class="list-group">
-                                            <li class="list-group-item list-group-item-light"><strong>Player</strong></li>
-                                            <li class="list-group-item">
-                                                <p>
-                                                    Top<br>
-                                                    Top<br>
-                                                    Top<br>
-                                                    Top<br>
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
+                                <table class="table table-sm">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Technique</th>
+                                        <th scope="col">Position</th>
+                                        <th scope="col">Catagory</th>
+                                        <th scope="col">Player</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for technique in flow_array  %}
+                                        <tr>
+                                            <th scope="row">{{ loop.index }}</th>
+                                            <td>{{ technique.name }}</td>
+                                            <td>{{ technique.startPosition.getValues[0] }}</td>
+                                            {#<td>{{ technique.endPosition.getValues[0].name }}</td>#}
+                                            <td>{{ technique.catagory }}</td>
+                                            <td>{{ technique.player }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
                             </ul>
                         </div>
 

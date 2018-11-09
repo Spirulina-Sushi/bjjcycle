@@ -78,12 +78,24 @@ class HomeController extends AbstractController
 
         $game = 'Standing';
         $flowStarter = $em->getRepository('App\Entity\Technique')->findFlowStarterStanding($game);
-        $flowIteration1 = $em->getRepository('App\Entity\Technique')->findFlowIteration($flowStarter->getEndPosition());
-        dump($flowStarter);
-        dump($flowIteration1);
-//        echo($flowStarter->getStartPosition()->getName());
-//        echo($flowStarter->getEndPosition()->getName());
+        $flowIterationStartPosition = $flowStarter->getEndPosition()->getValues();
+
+        $flowIteration = $em->getRepository('App\Entity\Technique')->findFlowIteration($flowIterationStartPosition[0]->getName());
+        $flowArray[0] = $flowStarter;
+        
+        for ($x = 1; $x <= 10; $x++) {
+
+            if (!$flowIterationStartPosition) {   break; }
+            $flowIteration = $em->getRepository('App\Entity\Technique')->findFlowIteration($flowIterationStartPosition[0]->getName());
+
+            $flowArray[$x] = $flowIteration;
+            $flowIterationStartPosition = $flowIteration->getEndPosition()->getValues();
+        }
+
+//        dump($flowArray);
+
         return $this->render('home/flow.html.twig', [
+            'flow_array' => $flowArray,
             'controller_name' => 'HomeController',
             'cycles' => $cycleRepository->findAll(),
             'techniques' => $techniqueReopsitory->findAll(),
