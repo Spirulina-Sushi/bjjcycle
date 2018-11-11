@@ -45,40 +45,89 @@
                         </div>
 
                     </div>
-
+                <br>
                     <div class="row">
                         <div class="col-sm-12">
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-light">
                                     <h3>Make a Flow</h3>
                                 </li>
-                                <li class="list-group-item">
-                                    <div class="form-group">
-                                        <label for="techniqueNoSelect">Number of techniques</label>
-                                        <select class="form-control-sm" id="techniqueNoSelect">
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                        </select>
 
-                                        <label for="startPositionSelect">Starting Position</label>
-                                        <select class="form-control-sm" id="startPositionSelect">
-                                            {%   for position in positions  %}
-                                                <option>{{ position.name }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-secondary mb-2">Go!</button>
+                                <li class="list-group-item">
+                                    <form  action="{{ path('flowGo') }}">
+                                        <div class="form-row">
+                                            <label for="inputCity" class="form-group col-md-12"><strong>Options</strong></label>
+                                            <div class="form-group col-md-2">
+                                                <label for="formNumberTech">Iterations</label>
+                                                <input type="text" class="form-control" id="formNumberTech" placeholder="5">
+                                            </div>
+                                            <div class="form-group col-md-5">
+                                                <label for="inputState">Active Player</label>
+                                                <select id="inputState" class="form-control">
+                                                    <option selected>Top Guy Only</option>
+                                                    <option>Bottom Guy Only</option>
+                                                    <option>Mixed</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-5">
+                                                <label for="inputState">Ends with a Submission</label>
+                                                <select id="inputState" class="form-control">
+                                                    <option selected>Yes</option>
+                                                    <option>No</option>
+                                                    <option>Don't mind</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <label for="inputCity" class="form-group col-md-12"><strong>Starting Position</strong></label>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputCity">Standing or Ground</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                    <label class="form-check-label" for="exampleRadios1">
+                                                        Standing
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <label for="inputState">Position</label>
+                                                <select id="inputState" class="form-control">
+                                                    <option selected>Random</option>
+                                                    {%   for position in positions  %}
+                                                        <option>{{ position.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                                                    <label class="form-check-label" for="exampleRadios1">
+                                                        Ground
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <select id="inputState" class="form-control">
+                                                    <option selected>Random</option>
+                                                    {%   for position in positions  %}
+                                                        <option>{{ position.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Flow!!</button>
+
+
+
+                                    </form>
                                 </li>
+
                             </ul>
                         </div>
 
                     </div>
 
-
+                </main>
 
             </div>
             <div class="col-sm-3">

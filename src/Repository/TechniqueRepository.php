@@ -61,6 +61,7 @@ class TechniqueRepository extends ServiceEntityRepository
             ->leftJoin('t.startPosition', 'p')
             ->andWhere('p.name = :position')
             ->setParameter('position', $startingPosition)
+//            ->orderBy('RAND()') https://github.com/beberlei/DoctrineExtensions
             ->getQuery()
             ->getOneOrNullResult()
             ;

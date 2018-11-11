@@ -82,7 +82,7 @@ class HomeController extends AbstractController
 
         $flowIteration = $em->getRepository('App\Entity\Technique')->findFlowIteration($flowIterationStartPosition[0]->getName());
         $flowArray[0] = $flowStarter;
-        
+
         for ($x = 1; $x <= 10; $x++) {
 
             if (!$flowIterationStartPosition) {   break; }
@@ -103,4 +103,15 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/flow/go", name="flowGo")
+     */
+    public function flowGo(CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory): Response
+    {
+
+        return $this->render('home/flowGo.html.twig', [
+            'cycles' => $cycleRepository->findAll(),
+            'techniques' => $techniqueReopsitory->findAll()
+        ]);
+    }
 }
