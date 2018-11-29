@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use App\Repository\CycleRepository;
+use App\Repository\TechniqueRepository;
 use App\Repository\PositionRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
-use App\Repository\CycleRepository;
-use Symfony\Component\HttpFoundation\Response;
-use App\Repository\TechniqueRepository;
 
 class HomeController extends AbstractController
 {
@@ -61,7 +62,6 @@ class HomeController extends AbstractController
      */
     public function focus(CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory): Response
     {
-
         return $this->render('home/focus.html.twig', [
             'cycles' => $cycleRepository->findAll(),
             'techniques' => $techniqueReopsitory->findAll()
@@ -77,15 +77,14 @@ class HomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $game = 'Standing';
-        $flowStarter = $em->getRepository('App\Entity\Technique')->findFlowStarterStanding($game);
+        $flowStarter = $em->getRepository('App\Entity\Technique')->findFlowStarter($game);
         $flowIterationStartPosition = $flowStarter->getEndPosition()->getValues();
 
-        $flowIteration = $em->getRepository('App\Entity\Technique')->findFlowIteration($flowIterationStartPosition[0]->getName());
         $flowArray[0] = $flowStarter;
 
         for ($x = 1; $x <= 10; $x++) {
 
-            if (!$flowIterationStartPosition) {   break; }
+            if (!$flowIterationStartPosition) {break;}
             $flowIteration = $em->getRepository('App\Entity\Technique')->findFlowIteration($flowIterationStartPosition[0]->getName());
 
             $flowArray[$x] = $flowIteration;
@@ -93,6 +92,7 @@ class HomeController extends AbstractController
         }
 
 //        dump($flowArray);
+//       echo($em->getRepository('App\Entity\Technique')->findFlowStarter('Ground'));
 
         return $this->render('home/flow.html.twig', [
             'flow_array' => $flowArray,
@@ -106,10 +106,57 @@ class HomeController extends AbstractController
     /**
      * @Route("/flow/go", name="flowGo")
      */
-    public function flowGo(CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory): Response
+    public function flowGo(Request $request, CycleRepository $cycleRepository, TechniqueRepository $techniqueReopsitory): Response
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $request = Request::createFromGlobals();
+
+        $numberOfTech = $request->get('numberOfTech');
+        $playerChoice = $request->get('playerChoice');
+        $submissionChoice = $request->get('submissionChoice');
+        $gameChoice = $request->get('gameChoice');
+        $positionChoiceStanding = $request->get('positionChoiceStanding');
+        $positionChoiceGround = $request->get('positionChoiceGround');
+
+        $choices = [
+            'Number of Techniques' => $numberOfTech,
+            'Top or Bottom' => $playerChoice,
+            'Ends with a submission' => $submissionChoice,
+            'Starts' => $gameChoice,
+        ];
+
+        if($gameChoice == 'Standing'){
+            $choices['Starting Position'] = $positionChoiceStanding;
+            } else {
+            $choices['Starting Position'] = $positionChoiceGround;
+        };
+
+        if($choices['Starting Position'] == 'Random'){
+            $flowStarter = $em->getRepository('App\Entity\Technique')->findFlowStarter($gameChoice);
+            $flowIterationStartPosition = $flowStarter->getEndPosition()->getValues();
+        }else{
+            $flowStarter = $em->getRepository('App\Entity\Technique')->findOneByPosition($choices['Starting Position']);
+            $flowIterationStartPosition = $flowStarter->getEndPosition()->getValues();
+        };
+        
+        dump($choices);
+
+        $flowArray[0] = $flowStarter;
+
+        for ($x = 1; $x <= $numberOfTech - 1; $x++) {
+
+            if (!$flowIterationStartPosition) {break;}
+            $flowIteration = $em->getRepository('App\Entity\Technique')->findFlowIteration($flowIterationStartPosition[0]->getName());
+
+            $flowArray[$x] = $flowIteration;
+            $flowIterationStartPosition = $flowIteration->getEndPosition()->getValues();
+        }
+
 
         return $this->render('home/flowGo.html.twig', [
+            'flow_array' => $flowArray,
+            'choices' => $choices,
             'cycles' => $cycleRepository->findAll(),
             'techniques' => $techniqueReopsitory->findAll()
         ]);

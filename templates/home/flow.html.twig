@@ -16,7 +16,20 @@
 
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-secondary">
-                                    <h3>Random Flow</h3>
+                                    <h3>Random Flow
+                                        {#<div class="btn-group" style="float: right;">#}
+                                            {#<button class="btn btn-secondary btn-sm dropdown-toggle"#}
+                                                    {#type="button"#}
+                                                    {#data-toggle="dropdown"#}
+                                                    {#aria-haspopup="true"#}
+                                                    {#aria-expanded="false">#}
+                                                {#Videos#}
+                                            {#</button>#}
+                                            {#<div class="dropdown-menu">#}
+                                                {#...#}
+                                            {#</div>#}
+                                        {#</div>#}
+                                    </h3>
                                 </li>
                                 <table class="table table-sm">
                                     <thead>
@@ -54,24 +67,24 @@
                                 </li>
 
                                 <li class="list-group-item">
-                                    <form  action="{{ path('flowGo') }}">
+                                    <form  action="{{ path('flowGo') }}" method="post">
                                         <div class="form-row">
-                                            <label for="inputCity" class="form-group col-md-12"><strong>Options</strong></label>
+                                            <label class="form-group col-md-12"><strong>Options</strong></label>
                                             <div class="form-group col-md-2">
-                                                <label for="formNumberTech">Iterations</label>
-                                                <input type="text" class="form-control" id="formNumberTech" placeholder="5">
+                                                <label for="numberOfTech">Iterations</label>
+                                                <input type="text" class="form-control" id="NumberOfTech" name="numberOfTech" value="5">
                                             </div>
                                             <div class="form-group col-md-5">
-                                                <label for="inputState">Active Player</label>
-                                                <select id="inputState" class="form-control">
+                                                <label for="playerChoice">Active Player</label>
+                                                <select id="playerChoice" name="playerChoice" class="form-control">
                                                     <option selected>Top Guy Only</option>
                                                     <option>Bottom Guy Only</option>
                                                     <option>Mixed</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-5">
-                                                <label for="inputState">Ends with a Submission</label>
-                                                <select id="inputState" class="form-control">
+                                                <label for="sumbissionChoice">Ends with a Submission</label>
+                                                <select id="sumbissionChoice" name="submissionChoice" class="form-control">
                                                     <option selected>Yes</option>
                                                     <option>No</option>
                                                     <option>Don't mind</option>
@@ -79,37 +92,37 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <label for="inputCity" class="form-group col-md-12"><strong>Starting Position</strong></label>
+                                            <label class="form-group col-md-12"><strong>Starting Position</strong></label>
                                             <div class="form-group col-md-4">
-                                                <label for="inputCity">Standing or Ground</label>
+                                                <label for="gameChoice">Standing or Ground</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                                    <label class="form-check-label" for="exampleRadios1">
+                                                    <input class="form-check-input" type="radio" name="gameChoice" id="gameChoiceStanding" value="Standing" checked>
+                                                    <label class="form-check-label" for="gameChoiceStanding">
                                                         Standing
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-8">
-                                                <label for="inputState">Position</label>
-                                                <select id="inputState" class="form-control">
+                                                <label for="positionChoiceStanding">Position</label>
+                                                <select id="positionChoiceStanding" name="positionChoiceStanding" class="form-control">
                                                     <option selected>Random</option>
-                                                    {%   for position in positions  %}
+                                                    {%   for position in positions if position.subsystem.system.game == 'Standing'%}
                                                         <option>{{ position.name }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-                                                    <label class="form-check-label" for="exampleRadios1">
+                                                    <input class="form-check-input" type="radio" name="gameChoice" id="gameChoiceGround" value="Ground">
+                                                    <label class="form-check-label" for="gameChoiceGround">
                                                         Ground
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-8">
-                                                <select id="inputState" class="form-control">
+                                                <select id="positionChoiceGround" name="positionChoiceGround" class="form-control">
                                                     <option selected>Random</option>
-                                                    {%   for position in positions  %}
+                                                    {%   for position in positions if position.subsystem.system.game == 'Ground'%}
                                                         <option>{{ position.name }}</option>
                                                     {% endfor %}
                                                 </select>
@@ -139,11 +152,9 @@
 
                         <ul class="list-group list-group-flush">
                             <li  class="list-group-item">
-                                <h4 class="card-title">Focus Subsystem
-                                    <a href="/technique/new" class="badge badge-secondary">Butterfly Guard</a>
                                 </h4>
-                                <h5 class="card-title">Focus Position
-                                    <a href="/technique/new" class="badge badge-secondary">Butterfly Guard Over/Under</a>
+                                <h5 class="card-title">Potential Flows
+                                    <a href="/technique/new" class="badge badge-secondary">{{ (techniques|length  **   techniques|length)|number_format(0, '.', ',') }}!!!</a>
                                 </h5>
                             </li>
 

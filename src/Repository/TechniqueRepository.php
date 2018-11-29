@@ -38,10 +38,25 @@ class TechniqueRepository extends ServiceEntityRepository
         ;
     }
 
-
-
-    public function findFlowStarterStanding($game): ?Technique
+    public function findOneByPosition($position): ?Technique
     {
+
+        return $this->createQueryBuilder('t')
+            ->leftJoin('t.startPosition', 'p')
+            ->andWhere('p.name = :position')
+            ->setParameter('position', $position)
+            ->orderBy('RAND()')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
+
+
+
+    public function findFlowStarter($game): ?Technique
+    {
+
         return $this->createQueryBuilder('t')
             ->leftJoin('t.startPosition', 'p')
             ->leftJoin('p.subsystem', 'ss')
@@ -49,21 +64,33 @@ class TechniqueRepository extends ServiceEntityRepository
             ->leftJoin('s.game', 'g')
             ->andWhere('g.name = :game')
             ->setParameter('game', $game)
+            ->orderBy('RAND()')
+            ->setMaxResults(1)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getSingleResult()
         ;
     }
     
     
     public function findFlowIteration($startingPosition): ?Technique
     {
-        return $this->createQueryBuilder('t')
+        $limit = 1;
+
+        $qb = $this->createQueryBuilder('t')
+
             ->leftJoin('t.startPosition', 'p')
             ->andWhere('p.name = :position')
             ->setParameter('position', $startingPosition)
-//            ->orderBy('RAND()') https://github.com/beberlei/DoctrineExtensions
-            ->getQuery()
-            ->getOneOrNullResult()
+            ->orderBy('RAND()')
+            ->getQuery();
+
+
+//        dump($qb);
+//        dump(count($qb));
+
+        return $qb
+            ->setMaxResults( $limit )
+            ->getSingleResult()
             ;
     }
 
