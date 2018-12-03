@@ -72,22 +72,22 @@
                                             <label class="form-group col-md-12"><strong>Options</strong></label>
                                             <div class="form-group col-md-2">
                                                 <label for="numberOfTech">Iterations</label>
-                                                <input type="text" class="form-control" id="NumberOfTech" name="numberOfTech" value="5">
+                                                <input type="number" class="form-control" id="NumberOfTech" name="numberOfTech" value="5" min="1" max="20">
                                             </div>
                                             <div class="form-group col-md-5">
                                                 <label for="playerChoice">Active Player</label>
                                                 <select id="playerChoice" name="playerChoice" class="form-control">
-                                                    <option selected>Top Guy Only</option>
-                                                    <option>Bottom Guy Only</option>
-                                                    <option>Mixed</option>
+                                                    <option selected>Top</option>
+                                                    <option>Bottom</option>
+                                                    <option>Either</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-5">
-                                                <label for="sumbissionChoice">Ends with a Submission</label>
+                                                <label for="sumbissionChoice">Submissions</label>
                                                 <select id="sumbissionChoice" name="submissionChoice" class="form-control">
-                                                    <option selected>Yes</option>
-                                                    <option>No</option>
-                                                    <option>Don't mind</option>
+                                                    <option selected>Ends With Sub</option>
+                                                    <option>Subs Included</option>
+                                                    <option>No Subs</option>
                                                 </select>
                                             </div>
                                         </div>

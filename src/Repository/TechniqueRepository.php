@@ -38,13 +38,20 @@ class TechniqueRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findOneByPosition($position): ?Technique
+    public function findOneByPosition($position, $player): ?Technique
     {
+
+        $parameters = [
+            'position' => $position,
+            'player' => $player
+        ];
 
         return $this->createQueryBuilder('t')
             ->leftJoin('t.startPosition', 'p')
+            ->leftJoin('t.player', 'pl')
             ->andWhere('p.name = :position')
-            ->setParameter('position', $position)
+            ->andwhere('pl.name = :player')
+            ->setParameters($parameters)
             ->orderBy('RAND()')
             ->setMaxResults(1)
             ->getQuery()

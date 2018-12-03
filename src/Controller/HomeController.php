@@ -113,7 +113,11 @@ class HomeController extends AbstractController
         $request = Request::createFromGlobals();
 
         $numberOfTech = $request->get('numberOfTech');
-        $playerChoice = $request->get('playerChoice');
+        if($request->get('playerChoice') == 'Either'){
+            $playerChoice = '*';
+        }else{
+            $playerChoice = $request->get('playerChoice');
+        };
         $submissionChoice = $request->get('submissionChoice');
         $gameChoice = $request->get('gameChoice');
         $positionChoiceStanding = $request->get('positionChoiceStanding');
@@ -136,10 +140,10 @@ class HomeController extends AbstractController
             $flowStarter = $em->getRepository('App\Entity\Technique')->findFlowStarter($gameChoice);
             $flowIterationStartPosition = $flowStarter->getEndPosition()->getValues();
         }else{
-            $flowStarter = $em->getRepository('App\Entity\Technique')->findOneByPosition($choices['Starting Position']);
+            $flowStarter = $em->getRepository('App\Entity\Technique')->findOneByPosition($choices['Starting Position'],$choices['Top or Bottom']);
             $flowIterationStartPosition = $flowStarter->getEndPosition()->getValues();
         };
-        
+
         dump($choices);
 
         $flowArray[0] = $flowStarter;
