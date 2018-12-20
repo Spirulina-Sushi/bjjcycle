@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th><a href="{{ path('catagory_index') }}">Catagory</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ technique.id }}</td>
                 <td>{{ technique.name }}</td>
+                <td>{{ technique.catagory }}</td>
                 <td>
                     <a href="{{ path('technique_show', {'id': technique.id}) }}">show</a>
                     <a href="{{ path('technique_edit', {'id': technique.id}) }}">edit</a>

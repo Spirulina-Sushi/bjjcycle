@@ -3,167 +3,191 @@
 {% block title %}Maintenance Cycle!{% endblock %}
 
 {% block body %}
-     <div class="container">
-              
-     	<div class="row">
-        	<div class="col-md-9">
-				<main role="main" class="inner cover">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-9">
+                <main role="main" class="inner cover">
                     <h1 class="cover-heading">Maintenance Cycle</h1>
-                    <p class="lead">The 'slow' cycle alows you to deepen your A-Game.</p>
- 
-      		<div class="row">
-      			<div class="col-lg-6">
-      			
-      					<ul class="list-group">
-      						<li 	class="list-group-item list-group-item-secondary">
-      								<h3>Ground Work</h3>
-      								Today's Drills for <br>
-      								<strong>Butterfly Guard Over/Under</strong></li>
-    					
-     						{% for technique in techniques %} {#if technique.startPosition == "Butterfly Guard Over/Under"#}           		
-     
-                              <li class="list-group-item">{{ technique.name }}
-                              
-                                          	<!-- Button trigger modal -->
-                                    <button type="button" 
-                                    			class="btn btn-secondary btn-sm" 
-                                    			data-toggle="modal" 
-                                    			data-target="#exampleModalCenter"
-                                    			style="float: right;"> Video
-                                    </button>
-                                    
-                                    		<!-- Modal -->
-                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                      	<div class="modal-dialog modal-dialog-centered" role="document">
-                                       		<div class="modal-content">
-                                          			<div class="modal-header">
-                                            			<h5 class="modal-title" id="exampleModalCenterTitle">{{ technique.name }} Video</h5>
-                                            			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              				<span aria-hidden="true">&times;</span>
-                                            			</button>
-                                          			</div>
-                                          
-      		                                <div class="modal-body">
-    											<iframe 	src="https://www.youtube.com/embed/nYdoNA38q30" 
-    														frameborder="0" allow="autoplay; encrypted-media" 
-    														allowfullscreen>
-    											</iframe>
-    
-                		                 	</div>
-                                          
-                        		            <div class="modal-footer">
-                            		            <div class="btn-group-sm" role="group">
-                                                  <a href="/video" class="btn btn-secondary" role="button" >Edit</a>
-                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <p class="lead">The Maintenance cycle allows you to keep all your techniques sharp.</p>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-secondary">
+                                    <h3>Ground Work</h3>
+                                    Today's Drills for <br>
+                                    <div class="float-left"><i class="fas fa-angle-left"></i></div>
+                                    <strong><a href="{{ path('profile') }}">{{ user.currentPositionGround }}</a></strong>
+                                    <div class="float-right"><i class="fas fa-angle-right"></i></div>
+                                </li>
+
+
+                                {% for technique in techniquesGround %}
+
+                                    <li class="list-group-item">{{ technique.name }}
+
+                                        <!-- Button trigger modal -->
+                                        <button type="button"
+                                                class="btn btn-secondary btn-sm"
+                                                data-toggle="modal"
+                                                data-target="#ModalCenter{{ technique.id }}"
+                                                style="float: right;"> Video
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="ModalCenter{{ technique.id }}" tabindex="-1" role="dialog"
+                                             aria-labelledby="ModalCenterTitle{{ technique.id }}" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document" >
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="ModalCenterTitle{{ technique.id }}">{{ technique.name }} Video
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body"
+                                                         id="ModalCenterBody{{ technique.id }}">
+                                                        <iframe id="iframe{{ technique.id }}"
+                                                                src="{%  for video in videos %}
+                                                                        {% if technique.name == video.technique.name %} {{ video.urlStartTime }}{% endif %}
+                                                                     {% endfor %}"
+                                                                frameborder="0" allow="autoplay; encrypted-media"
+                                                                allowfullscreen>
+                                                        </iframe>
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <div class="btn-group-sm" role="group">
+                                                            <a href="/video" class="btn btn-secondary" role="button">Edit</a>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
-                                				
-                                          	</div>
-                                        	</div>
-                                      	</div>
-                             		</div>
-                              
-                              </li>
-     
-     					    {% endfor %}
-                        </ul>  	
-                       </div> 
-                       
-                       <div class="col-lg-6">
-                    
-      					<ul class="list-group">
-      						<li 	class="list-group-item list-group-item-light">
-      								<h3>Take Downs</h3>
-      								Today's Drills for <br>
-      								<strong>Butterfly Guard Over/Under</strong></li>
-    					
-     						{% for technique in techniques %} {#if technique.startPosition == "Butterfly Guard Over/Under"#}           		
-     
-                              <li class="list-group-item">{{ technique.name }}
-                              
-                                          	<!-- Button trigger modal -->
-                                    <button type="button" 
-                                    			class="btn btn-secondary btn-sm" 
-                                    			data-toggle="modal" 
-                                    			data-target="#exampleModalCenter"
-                                    			style="float: right;"> Video
-                                    </button>
-                                    
-                                    		<!-- Modal -->
-                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                      	<div class="modal-dialog modal-dialog-centered" role="document">
-                                       		<div class="modal-content">
-                                          			<div class="modal-header">
-                                            			<h5 class="modal-title" id="exampleModalCenterTitle">{{ technique.name }} Video</h5>
-                                            			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              				<span aria-hidden="true">&times;</span>
-                                            			</button>
-                                          			</div>
-                                          
-      		                                <div class="modal-body">
-    											<iframe 	src="https://www.youtube.com/embed/nYdoNA38q30" 
-    														frameborder="0" allow="autoplay; encrypted-media" 
-    														allowfullscreen>
-    											</iframe>
-    
-                		                 	</div>
-                                          
-                        		            <div class="modal-footer">
-                            		            <div class="btn-group-sm" role="group">
-                                                  <a href="/video" class="btn btn-secondary" role="button" >Edit</a>
-                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                </div>
-                                				
-                                          	</div>
-                                        	</div>
-                                      	</div>
-                             		</div>
-                              
-                              </li>
-     
-     					    {% endfor %}
-                        </ul>  	
-                    
-                       </div>  	
-                	
-                	</div>         	
-        		</div>
-           
-            <div class="col-lg-3">
-                    {% for cycle in cycles if cycle.name == 'Maintenance' %}
-                      	<div class="card" >
-                   			<img 	class="card-img-top"
-                   					src="{{ absolute_url(asset('images/Wrench.png')) }}"  
-                   					alt="Card image cap">
-                          	
-                          	<ul class="list-group list-group-flush">
-                            	<li  class="list-group-item">
-                                	<h4 class="card-title">Maintenance Subsystem
-                                		<a href="/technique/new" class="badge badge-secondary">Butterfly Guard</a>
-                                	</h4>
-                                	<h5 class="card-title">Maintenance Position
-                                		<a href="/technique/new" class="badge badge-secondary">Butterfly Guard Over/Under</a>
-                                	</h5>                            	
-                            	</li>
-                            	
-                            	<li class="list-group-item">
-                            		Each Period Lasts
-                            		<a href="/cycle/2/edit" class="badge badge-secondary">{{ cycle.period }}</a><br>
-                            		Total Techniques
-                            		<a href="/technique/new" class="badge badge-secondary">{{ techniques|length }} !!!</a><br>
-                            		The Maintenance Cycle Lasts
-                            		<a href="/cycle/2" class="badge badge-secondary">2 Years</a><br>
-                            	</li>
-                          	
-                          	</ul>
-                          	
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                {% endfor %}
+                            </ul>
                         </div>
-                    {% endfor  %}    
+
+                        <div class="col-lg-6">
+
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-light">
+                                    <h3>Take Downs</h3>
+                                    Today's Drills for <br>
+                                    <div class="float-left"><i class="fas fa-angle-left"></i></div>
+                                    <strong><a href="{{ path('profile') }}">{{ user.currentPositionStanding }}</a></strong>
+                                    <div class="float-right"><i class="fas fa-angle-right"></i></div>
+                                </li>
+
+                                {% for technique in techniquesStanding %}
+
+                                    <li class="list-group-item">{{ technique.name }}
+
+                                        <!-- Button trigger modal -->
+                                        <button type="button"
+                                                class="btn btn-secondary btn-sm"
+                                                data-toggle="modal"
+                                                data-target="#exampleModalCenter"
+                                                style="float: right;"> Video
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="exampleModalCenterTitle">{{ technique.name }} Video</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <iframe src="https://www.youtube.com/embed/nYdoNA38q30"
+                                                                frameborder="0" allow="autoplay; encrypted-media"
+                                                                allowfullscreen>
+                                                        </iframe>
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <div class="btn-group-sm" role="group">
+                                                            <a href="/video" class="btn btn-secondary" role="button">Edit</a>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+
                     </div>
-    			</main>                
-          	</div>
+            </div>
+
+            <div class="col-lg-3">
+                {% for cycle in cycles if cycle.name == 'Maintenance' %}
+                    <div class="card">
+                        <img class="card-img-top"
+                             src="{{ absolute_url(asset('images/Wrench.png')) }}"
+                             alt="Card image cap">
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h4 class="card-title">Maintenance Subsystem
+                                    <a href="/technique/new" class="badge badge-secondary">Butterfly Guard</a>
+                                </h4>
+                                <h5 class="card-title">Maintenance Position
+                                    <a href="/technique/new" class="badge badge-secondary">Butterfly Guard
+                                        Over/Under</a>
+                                </h5>
+                            </li>
+
+                            <li class="list-group-item">
+                                Each Period Lasts
+                                <a href="{{ path('profile') }}" class="badge badge-secondary">{{ cycle.period }}</a><br>
+                                Total Techniques
+                                <a href="/technique/new" class="badge badge-secondary">{{ techniques|length }}
+                                    !!!</a><br>
+                                The Maintenance Cycle Lasts
+                                <a href="{{ path('profile') }}" class="badge badge-secondary">2 Years</a><br>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                {% endfor %}
+            </div>
+            </main>
         </div>
-	
-	
+    </div>
+
+
 
 
 {% endblock %}

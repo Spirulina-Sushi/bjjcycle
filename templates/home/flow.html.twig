@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Focus Cycle!{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-9">
+                <main role="main" class="inner cover">
+                    <h1 class="cover-heading">Flow</h1>
+                    <p class="lead">Choose or generate a sequence of techniques</p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-secondary">
+                                    <h3>Random Flow
+                                        {#<div class="btn-group" style="float: right;">#}
+                                            {#<button class="btn btn-secondary btn-sm dropdown-toggle"#}
+                                                    {#type="button"#}
+                                                    {#data-toggle="dropdown"#}
+                                                    {#aria-haspopup="true"#}
+                                                    {#aria-expanded="false">#}
+                                                {#Videos#}
+                                            {#</button>#}
+                                            {#<div class="dropdown-menu">#}
+                                                {#...#}
+                                            {#</div>#}
+                                        {#</div>#}
+                                    </h3>
+                                </li>
+                                <table class="table table-sm">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Technique</th>
+                                        <th scope="col">Position</th>
+                                        <th scope="col">Catagory</th>
+                                        <th scope="col">Player</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for technique in flow_array  %}
+                                        <tr>
+                                            <th scope="row">{{ loop.index }}</th>
+                                            <td>{{ technique.name }}</td>
+                                            <td>{{ technique.startPosition.getValues[0] }}</td>
+                                            {#<td>{{ technique.endPosition.getValues[0].name }}</td>#}
+                                            <td>{{ technique.catagory }}</td>
+                                            <td>{{ technique.player }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </ul>
+                        </div>
+
+                    </div>
+                <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-light">
+                                    <h3>Make a Flow</h3>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <form  action="{{ path('flowGo') }}" method="post">
+                                        <div class="form-row">
+                                            <label class="form-group col-md-12"><strong>Options</strong></label>
+                                            <div class="form-group col-md-2">
+                                                <label for="numberOfTech">Iterations</label>
+                                                <input type="number" class="form-control" id="NumberOfTech" name="numberOfTech" value="5" min="1" max="20">
+                                            </div>
+                                            <div class="form-group col-md-5">
+                                                <label for="playerChoice">Active Player</label>
+                                                <select id="playerChoice" name="playerChoice" class="form-control">
+                                                    <option selected>Top</option>
+                                                    <option>Bottom</option>
+                                                    <option>Either</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-5">
+                                                <label for="sumbissionChoice">Submissions</label>
+                                                <select id="sumbissionChoice" name="submissionChoice" class="form-control">
+                                                    <option selected>Ends With Sub</option>
+                                                    <option>Subs Included</option>
+                                                    <option>No Subs</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <label class="form-group col-md-12"><strong>Starting Position</strong></label>
+                                            <div class="form-group col-md-4">
+                                                <label for="gameChoice">Standing or Ground</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="gameChoice" id="gameChoiceStanding" value="Standing" checked>
+                                                    <label class="form-check-label" for="gameChoiceStanding">
+                                                        Standing
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <label for="positionChoiceStanding">Position</label>
+                                                <select id="positionChoiceStanding" name="positionChoiceStanding" class="form-control">
+                                                    <option selected>Random</option>
+                                                    {%   for position in positions if position.subsystem.system.game == 'Standing'%}
+                                                        <option>{{ position.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="gameChoice" id="gameChoiceGround" value="Ground">
+                                                    <label class="form-check-label" for="gameChoiceGround">
+                                                        Ground
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <select id="positionChoiceGround" name="positionChoiceGround" class="form-control">
+                                                    <option selected>Random</option>
+                                                    {%   for position in positions if position.subsystem.system.game == 'Ground'%}
+                                                        <option>{{ position.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Flow!!</button>
+
+
+
+                                    </form>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </main>
+
+            </div>
+            <div class="col-sm-3">
+                {% for cycle in cycles if cycle.name == 'Focus' %}
+                    <div class="card" >
+                        <img 	class="card-img-top"
+                                src="{{ absolute_url(asset('images/flow.jpg')) }}"
+                                alt="Card image cap">
+
+                        <ul class="list-group list-group-flush">
+                            <li  class="list-group-item">
+                                </h4>
+                                <h5 class="card-title">Potential Flows
+                                    <a href="/technique/new" class="badge badge-secondary">{{ (techniques|length  **   techniques|length)|number_format(0, '.', ',') }}!!!</a>
+                                </h5>
+                            </li>
+
+                            <li class="list-group-item">
+                                Each Period Lasts
+                                <a href="/cycle" class="badge badge-secondary">{{ cycle.period }}</a><br>
+                                Total Techniques
+                                <a href="/technique/new" class="badge badge-secondary">{{ techniques|length }} !!!</a><br>
+                                The Focus Cycle Lasts
+                                <a href="/cycle/2" class="badge badge-secondary">2 Years</a><br>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                {% endfor  %}
+            </div>
+            </main>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

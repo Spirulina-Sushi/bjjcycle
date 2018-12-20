@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <h1>Yo, {{ user.username }}!!!</h1>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-10">
+                <table class="table table-hover table-sm">
+                    <thead>
+                    <tr class="table-secondary">
+                        <th scope="col">Thing</th>
+                        <th scope="col" colspan="3">Settings</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Ground Position</th>
+                        <td colspan="3">{{ user.currentPositionGround }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Standing Position</th>
+                        <td colspan="3">{{ user.currentPositionStanding }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Focus Ground Position</th>
+                        <td >{{ focusPositionGround.name }}</td>
+                        <td >{{ focusPositionGround.subsystem.system }}</td>
+                        <td >{{ focusPositionGround.subsystem.system.game }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Focus Standing Position</th>
+                        <td >{{ focusPositionStanding.name }}</td>
+                        <td >{{ focusPositionStanding.subsystem.system }}</td>
+                        <td >{{ focusPositionStanding.subsystem.system.game }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Maintenance Cycle</th>
+                        <td>{{ user.mSeshPerWeek }} Session / Week</td>
+                        <td>{{ user.mSeshPerVariant }} Session / Variant</td>
+                        <td>{{ user.mOffset}} Offset</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Join Date</th>
+                        <td>{{ user.joinDate|date("d/m/Y") }} </td>
+                        <td>{{ weeksSinceJoin }} weeks on site</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Database Ground </th>
+                        <td>{{ positionsGround|length }} Ground Subsystems </td>
+                        <td>{{ techniquesGround|length }} Ground Techniques </td>
+                        <td>Week {{ focusWeekGround }} of {{ positionsGround|length }} </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Database Standing </th>
+                        <td>{{ positionsStanding|length }} Standing Subsystems </td>
+                        <td>{{ techniquesStanding|length }} Standing Techniques </td>
+                        <td>Week {{ focusWeekStanding}} of {{ positionsStanding|length }} </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

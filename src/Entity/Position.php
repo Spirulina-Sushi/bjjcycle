@@ -19,7 +19,7 @@ class Position
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\SubSystem", inversedBy="positions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Subsystem", inversedBy="positions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $subsystem;
@@ -55,11 +55,23 @@ class Position
      */
     private $techniquesEnd;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="currentPosition")
+     */
+    private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="position")
+     */
+    private $videos;
+
     public function __construct()
     {
         $this->techniques = new ArrayCollection();
         $this->techniquesEnd = new ArrayCollection();
         $this->techniquesStart = new ArrayCollection();
+        $this->users = new ArrayCollection();
+        $this->videos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,12 +79,12 @@ class Position
         return $this->id;
     }
 
-    public function getSubsystem(): ?SubSystem
+    public function getSubsystem(): ?Subsystem
     {
         return $this->subsystem;
     }
 
-    public function setSubsystem(?SubSystem $subsystem): self
+    public function setSubsystem(?Subsystem $subsystem): self
     {
         $this->subsystem = $subsystem;
 
@@ -205,6 +217,68 @@ class Position
         if ($this->techniquesStart->contains($techniquesStart)) {
             $this->techniquesStart->removeElement($techniquesStart);
             $techniquesStart->removeStartPosition($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setCurrentPosition($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getCurrentPosition() === $this) {
+                $user->setCurrentPosition(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+            $video->setPosition($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        if ($this->videos->contains($video)) {
+            $this->videos->removeElement($video);
+            // set the owning side to null (unless already changed)
+            if ($video->getPosition() === $this) {
+                $video->setPosition(null);
+            }
         }
 
         return $this;

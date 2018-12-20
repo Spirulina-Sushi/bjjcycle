@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,16 +37,6 @@ class Technique
      */
     private $catagory;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Video", inversedBy="techniques")
-     */
-    private $video;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Game")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $game;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Cycle", inversedBy="techniques")
@@ -66,17 +56,24 @@ class Technique
      */
     private $endPosition;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="technique")
+     */
+    private $videos;
+
     public function __construct()
     {
         $this->video = new ArrayCollection();
         $this->startPosition = new ArrayCollection();
         $this->endPosition = new ArrayCollection();
+        $this->videos = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
 
     public function getName(): ?string
     {
@@ -119,43 +116,6 @@ class Technique
         return $this;
     }
 
-    /**
-     * @return Collection|Video[]
-     */
-    public function getVideo(): Collection
-    {
-        return $this->video;
-    }
-
-    public function addVideo(Video $video): self
-    {
-        if (!$this->video->contains($video)) {
-            $this->video[] = $video;
-        }
-
-        return $this;
-    }
-
-    public function removeVideo(Video $video): self
-    {
-        if ($this->video->contains($video)) {
-            $this->video->removeElement($video);
-        }
-
-        return $this;
-    }
-
-    public function getGame(): ?Game
-    {
-        return $this->game;
-    }
-
-    public function setGame(?Game $game): self
-    {
-        $this->game = $game;
-
-        return $this;
-    }
 
     public function getCycle(): ?Cycle
     {
@@ -216,6 +176,37 @@ class Technique
     {
         if ($this->endPosition->contains($endPosition)) {
             $this->endPosition->removeElement($endPosition);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+            $video->setTechnique($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        if ($this->videos->contains($video)) {
+            $this->videos->removeElement($video);
+            // set the owning side to null (unless already changed)
+            if ($video->getTechnique() === $this) {
+                $video->setTechnique(null);
+            }
         }
 
         return $this;

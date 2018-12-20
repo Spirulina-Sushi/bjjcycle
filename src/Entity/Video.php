@@ -2,9 +2,8 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VideoRepository")
@@ -19,23 +18,57 @@ class Video
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Position", inversedBy="videos")
+     */
+    private $position;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Technique", inversedBy="videos")
+     */
+    private $technique;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $url;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Technique", mappedBy="video")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $techniques;
+    private $start;
 
-    public function __construct()
-    {
-        $this->techniques = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $stop;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getPosition(): ?Position
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?Position $position): self
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    public function getTechnique(): ?Technique
+    {
+        return $this->technique;
+    }
+
+    public function setTechnique(?Technique $technique): self
+    {
+        $this->technique = $technique;
+
+        return $this;
     }
 
     public function getUrl(): ?string
@@ -50,36 +83,32 @@ class Video
         return $this;
     }
 
-    public function __toString()
+    public function getStart(): ?int
     {
-        return (string) $this->url;
-    }
-    
-    /**
-     * @return Collection|Technique[]
-     */
-    public function getTechniques(): Collection
-    {
-        return $this->techniques;
+        return $this->start;
     }
 
-    public function addTechnique(Technique $technique): self
+    public function setStart(?int $start): self
     {
-        if (!$this->techniques->contains($technique)) {
-            $this->techniques[] = $technique;
-            $technique->addVideo($this);
-        }
+        $this->start = $start;
 
         return $this;
     }
 
-    public function removeTechnique(Technique $technique): self
+    public function getStop(): ?int
     {
-        if ($this->techniques->contains($technique)) {
-            $this->techniques->removeElement($technique);
-            $technique->removeVideo($this);
-        }
+        return $this->stop;
+    }
+
+    public function setStop(?int $stop): self
+    {
+        $this->stop = $stop;
 
         return $this;
+    }
+
+    public function getUrlStartTime(): ?string
+    {
+        return $this->url."?start=".$this->start;
     }
 }

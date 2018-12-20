@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-9">
+                <main role="main" class="inner cover">
+                    <h1 class="cover-heading">Flow</h1>
+                    <p class="lead">Your generated sequence of techniques</p>
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-info">
+                                    <h3>Your Flow</h3>
+
+                                </li>
+                                <table class="table table-sm">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Technique</th>
+                                        <th scope="col">Position</th>
+                                        <th scope="col">Catagory</th>
+                                        <th scope="col">Player</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for technique in flow_array  %}
+                                        <tr>
+                                            <th scope="row">{{ loop.index }}</th>
+                                            <td>{{ technique.name }}</td>
+                                            <td>{{ technique.startPosition.getValues[0] }}</td>
+                                            {#<td>{{ technique.endPosition.getValues[0].name }}</td>#}
+                                            <td>{{ technique.catagory }}</td>
+                                            <td>{{ technique.player }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+
+                </main>
+
+            </div>
+            <div class="col-md-3">
+                {% for cycle in cycles if cycle.name == 'Focus' %}
+                    <div class="card" >
+                        <img 	class="card-img-top"
+                                src="{{ absolute_url(asset('images/flow.jpg')) }}"
+                                alt="Card image cap">
+
+                        <ul class="list-group list-group-flush">
+                            <li  class="list-group-item">
+                                </h4>
+                                <h5 class="card-title">Flow Options
+                                </h5>
+                                <p>
+                                    {% for key,value in choices %}
+                                        {{ key }} : <span class="badge badge-secondary">{{ value }}</span><br>
+                                    {% endfor %}
+                                </p>
+                            </li>
+
+                            <li class="list-group-item">
+                                Each Period Lasts
+                                <a href="/cycle" class="badge badge-secondary">{{ cycle.period }}</a><br>
+                                Total Techniques
+                                <a href="/technique/new" class="badge badge-secondary">{{ techniques|length }} !!!</a><br>
+                                The Focus Cycle Lasts
+                                <a href="/cycle/2" class="badge badge-secondary">2 Years</a><br>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                {% endfor  %}
+            </div>
+            </main>
+        </div>
+    </div>
+
+{% endblock %}
